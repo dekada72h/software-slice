@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zastrzeżenia prawne serwisu SoftwareSlice - informacje o odpowiedzialności, linkach afiliacyjnych i dokładności treści.">
+    <title>Zastrzeżenia Prawne - SoftwareSlice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .lang-switcher { display: flex; gap: 4px; margin-left: 12px; }
+        .lang-btn { padding: 6px 12px; background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 6px; color: #888; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .lang-btn:hover, .lang-btn.active { border-color: #FFD700; color: #FFD700; background: rgba(255,215,0,0.15); }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">SS</div>
+                <span>Software<span class="logo-highlight">Slice</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" data-i18n="nav.home">Strona Główna</a>
+                <a href="categories.html" data-i18n="nav.categories">Kategorie</a>
+                <a href="#" data-i18n="nav.reviews">Recenzje</a>
+                <a href="about.html" data-i18n="nav.about">O Nas</a>
+                <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
+            </div>
+            <div class="nav-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Szukaj oprogramowania..." data-i18n-placeholder="nav.searchPlaceholder">
+                    <button class="search-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="pl">PL</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <button class="mobile-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header fade-in">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" data-i18n="nav.home">Strona Główna</a>
+                <span class="breadcrumb-separator">&gt;</span>
+                <span data-i18n="disclaimer.title">Zastrzeżenia Prawne</span>
+            </div>
+            <h1 data-i18n="disclaimer.title">Zastrzeżenia Prawne</h1>
+        </div>
+    </section>
+
+    <!-- Legal Content -->
+    <section class="legal-content fade-in">
+        <div class="container">
+            <div class="legal-section">
+                <p class="legal-update" data-i18n="disclaimer.lastUpdated"><strong>Ostatnia aktualizacja:</strong> 31 stycznia 2026</p>
+            </div>
+
+            <div class="legal-section fade-in">
+                <h2 data-i18n="disclaimer.generalInfo.title">Informacje Ogólne</h2>
+                <p data-i18n="disclaimer.generalInfo.p1">Wszelkie recenzje, oceny i opinie publikowane na stronie SoftwareSlice (softwareslice.com) stanowią subiektywne opinie naszego zespołu redakcyjnego, oparte na rzetelnym testowaniu i analizie oprogramowania.</p>
+                <p data-i18n="disclaimer.generalInfo.p2">Treści zamieszczone na naszej stronie mają charakter wyłącznie informacyjny i nie stanowią profesjonalnej porady technicznej, prawnej ani biznesowej. Przed podjęciem decyzji o zakupie lub wdrożeniu oprogramowania zalecamy przeprowadzenie własnej analizy i konsultację z odpowiednim specjalistą.</p>
+                <p data-i18n="disclaimer.generalInfo.p3">Nasze recenzje są przygotowywane z najwyższą starannością, jednak nie powinny być traktowane jako jedyne źródło informacji przy podejmowaniu decyzji dotyczących oprogramowania.</p>
+            </div>
+
+            <div class="legal-section fade-in">
+                <h2 data-i18n="disclaimer.affiliateLinks.title">Linki Afiliacyjne</h2>
+                <p data-i18n="disclaimer.affiliateLinks.p1">SoftwareSlice uczestniczy w programach partnerskich i afiliacyjnych. Oznacza to, że niektóre linki zamieszczone na naszej stronie są linkami afiliacyjnymi.</p>
+                <p data-i18n="disclaimer.affiliateLinks.p2">Otrzymujemy prowizje od kwalifikujących się zakupów dokonanych za pośrednictwem tych linków. Jest to jeden ze sposobów, w jaki finansujemy działalność naszego serwisu i umożliwiamy dostarczanie bezpłatnych treści naszym czytelnikom.</p>
+                <p data-i18n="disclaimer.affiliateLinks.p3">Udział w programach afiliacyjnych nie wpływa w żaden sposób na nasze oceny, wyniki recenzji ani wyrażane opinie. Naszym priorytetem jest zawsze rzetelność i obiektywność przekazywanych informacji.</p>
+                <p data-i18n="disclaimer.affiliateLinks.p4">Wszystkie linki afiliacyjne są wyraźnie oznaczone na naszej stronie, aby zapewnić pełną przejrzystość wobec naszych czytelników.</p>
+            </div>
+
+            <div class="legal-section fade-in">
+                <h2 data-i18n="disclaimer.accuracy.title">Dokładność Informacji</h2>
+                <p data-i18n="disclaimer.accuracy.p1">Dokładamy wszelkich starań, aby informacje publikowane na SoftwareSlice były dokładne, aktualne i wiarygodne. Nasze recenzje opierają się na szczegółowym testowaniu i analizie każdego produktu.</p>
+                <p data-i18n="disclaimer.accuracy.p2">Należy jednak pamiętać, że oprogramowanie podlega częstym zmianom i aktualizacjom. Ceny, funkcje, interfejs użytkownika oraz warunki licencyjne mogą ulec zmianie bez wcześniejszego powiadomienia ze strony producentów.</p>
+                <p data-i18n="disclaimer.accuracy.p3">Zawsze zalecamy weryfikację najnowszych informacji bezpośrednio na oficjalnej stronie internetowej producenta oprogramowania przed podjęciem decyzji o zakupie.</p>
+            </div>
+
+            <div class="legal-section fade-in">
+                <h2 data-i18n="disclaimer.liability.title">Odpowiedzialność</h2>
+                <p data-i18n="disclaimer.liability.p1">SoftwareSlice nie ponosi odpowiedzialności za jakiekolwiek decyzje podjęte na podstawie informacji zawartych w naszych recenzjach, artykułach czy poradnikach. Korzystanie z oprogramowania rekomendowanego na naszej stronie odbywa się na własne ryzyko użytkownika.</p>
+                <p data-i18n="disclaimer.liability.p2">Nie ponosimy odpowiedzialności za ewentualne straty, szkody lub niedogodności wynikające z użytkowania oprogramowania opisanego na naszej stronie, w tym między innymi za utratę danych, przerwy w działalności czy problemy z kompatybilnością.</p>
+                <p data-i18n="disclaimer.liability.p3">Użytkownik jest wyłącznie odpowiedzialny za ocenę przydatności danego oprogramowania do swoich potrzeb oraz za zapewnienie zgodności z obowiązującymi przepisami prawa.</p>
+            </div>
+
+            <div class="legal-section fade-in">
+                <h2 data-i18n="disclaimer.trademarks.title">Znaki Towarowe</h2>
+                <p data-i18n="disclaimer.trademarks.p1">Wszystkie nazwy produktów, logotypy, marki i znaki towarowe wymienione na stronie SoftwareSlice są własnością ich odpowiednich właścicieli. Używamy ich wyłącznie w celach identyfikacyjnych i informacyjnych.</p>
+                <p data-i18n="disclaimer.trademarks.p2">Wszelkie odniesienia do znaków towarowych osób trzecich nie oznaczają powiązania, sponsorowania ani poparcia ze strony właścicieli tych znaków. SoftwareSlice jest niezależnym serwisem recenzenckim i nie jest powiązany z żadnym z recenzowanych producentów oprogramowania, chyba że wyraźnie zaznaczono inaczej.</p>
+            </div>
+
+            <div class="legal-section fade-in">
+                <h2 data-i18n="disclaimer.externalLinks.title">Linki Zewnętrzne</h2>
+                <p data-i18n="disclaimer.externalLinks.p1">Nasza strona zawiera linki prowadzące do zewnętrznych witryn internetowych, które nie są kontrolowane ani zarządzane przez SoftwareSlice. Zamieszczamy te linki w celu ułatwienia dostępu do dodatkowych informacji i zasobów.</p>
+                <p data-i18n="disclaimer.externalLinks.p2">Nie ponosimy odpowiedzialności za treści, politykę prywatności, praktyki ani dostępność jakichkolwiek stron zewnętrznych, do których prowadzą linki z naszego serwisu. Korzystanie z tych stron odbywa się na własne ryzyko użytkownika i podlega warunkom określonym przez te strony.</p>
+            </div>
+
+            <div class="legal-section fade-in">
+                <h2 data-i18n="disclaimer.changes.title">Zmiany w Zastrzeżeniach</h2>
+                <p data-i18n="disclaimer.changes.p1">SoftwareSlice zastrzega sobie prawo do aktualizacji i modyfikacji niniejszych zastrzeżeń prawnych w dowolnym momencie, bez wcześniejszego powiadomienia. Zalecamy regularne przeglądanie tej strony w celu zapoznania się z ewentualnymi zmianami.</p>
+                <p data-i18n="disclaimer.changes.p2">Dalsze korzystanie z serwisu po wprowadzeniu zmian w zastrzeżeniach prawnych oznacza akceptację zaktualizowanych warunków.</p>
+            </div>
+
+            <div class="legal-section fade-in">
+                <h2 data-i18n="disclaimer.contact.title">Kontakt</h2>
+                <p data-i18n="disclaimer.contact.p1">W przypadku jakichkolwiek pytań dotyczących niniejszych zastrzeżeń prawnych, prosimy o kontakt pod adresem e-mail:</p>
+                <p class="legal-contact-email"><a href="mailto:kontakt@softwareslice.com">kontakt@softwareslice.com</a></p>
+                <p data-i18n="disclaimer.contact.p2">Postaramy się odpowiedzieć na każde zapytanie w możliwie najkrótszym terminie.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">SS</div>
+                        <span>Software<span class="logo-highlight">Slice</span></span>
+                    </a>
+                    <p data-i18n="footer.description">Twoje zaufane źródło rzetelnych recenzji oprogramowania. Pomagamy podejmować świadome decyzje technologiczne.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.categories">Kategorie</h4>
+                    <ul>
+                        <li><a href="categories.html" data-i18n="footer.cat.productivity">Produktywność</a></li>
+                        <li><a href="categories.html" data-i18n="footer.cat.security">Bezpieczeństwo</a></li>
+                        <li><a href="categories.html" data-i18n="footer.cat.development">Programowanie</a></li>
+                        <li><a href="categories.html" data-i18n="footer.cat.design">Grafika i Design</a></li>
+                        <li><a href="categories.html" data-i18n="footer.cat.business">Biznes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.company">Firma</h4>
+                    <ul>
+                        <li><a href="about.html" data-i18n="nav.about">O Nas</a></li>
+                        <li><a href="contact.html" data-i18n="nav.contact">Kontakt</a></li>
+                        <li><a href="#" data-i18n="footer.team">Zespół</a></li>
+                        <li><a href="#" data-i18n="footer.careers">Kariera</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 data-i18n="footer.legal">Prawne</h4>
+                    <ul>
+                        <li><a href="privacy.html" data-i18n="footer.privacy">Polityka Prywatności</a></li>
+                        <li><a href="terms.html" data-i18n="footer.terms">Regulamin</a></li>
+                        <li><a href="disclaimer.html" data-i18n="footer.disclaimer">Zastrzeżenia Prawne</a></li>
+                        <li><a href="cookies.html" data-i18n="footer.cookies">Polityka Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">&copy; 2026 SoftwareSlice. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

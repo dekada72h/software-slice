@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Nas - SoftwareSlice | Niezalezne Recenzje Oprogramowania</title>
+    <meta name="description" content="Poznaj zespol SoftwareSlice - niezalezna platforma recenzji oprogramowania. Uczciwe, dokladne i przejrzyste recenzje.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .lang-switcher { display: flex; gap: 4px; margin-left: 12px; }
+        .lang-btn { padding: 6px 12px; background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 6px; color: #888; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .lang-btn:hover, .lang-btn.active { border-color: #FFD700; color: #FFD700; background: rgba(255,215,0,0.15); }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">SS</div>
+                <span>Software<strong>Slice</strong></span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-i18n="nav.home">Strona Glowna</a>
+                <a href="categories.html" class="nav-link" data-i18n="nav.categories">Kategorie</a>
+                <a href="#" class="nav-link" data-i18n="nav.reviews">Recenzje</a>
+                <a href="about.html" class="nav-link active" data-i18n="nav.about">O Nas</a>
+                <a href="contact.html" class="nav-link" data-i18n="nav.contact">Kontakt</a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-bar">
+                    <input type="text" class="search-input" data-i18n-placeholder="nav.searchPlaceholder" placeholder="Szukaj oprogramowania...">
+                    <button class="search-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="M21 21l-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="pl">PL</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="page-header fade-in">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" data-i18n="nav.home">Strona Glowna</a>
+                <span class="breadcrumb-separator">&gt;</span>
+                <span data-i18n="nav.about">O Nas</span>
+            </div>
+            <h1 class="page-title" data-i18n="about.title">O SoftwareSlice</h1>
+            <p class="page-description" data-i18n="about.desc">Dowiedz sie wiecej o naszej misji, wartosciach i zespole stojacym za niezaleznymi recenzjami oprogramowania.</p>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT MISSION SECTION ========== -->
+    <section class="about-section fade-in">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 class="section-title" data-i18n="about.mission.title">Nasza Misja</h2>
+                    <p class="about-text" data-i18n="about.mission.p1">
+                        SoftwareSlice to niezalezna platforma recenzji oprogramowania, stworzona z mysla o uzytkownikach, ktorzy szukaja rzetelnych i obiektywnych informacji przed podjeciem decyzji o zakupie. Nie jestesmy powiazani z zadnym producentem oprogramowania, co pozwala nam zachowac pelna niezaleznosc w naszych ocenach.
+                    </p>
+                    <p class="about-text" data-i18n="about.mission.p2">
+                        Nasz zespol sklada sie z doswiadczonych recenzentow, ktorzy codziennie testuja i analizuja roznorodne narzedzia programistyczne, aplikacje biurowe, rozwiazania bezpieczenstwa oraz wiele innych kategorii oprogramowania. Kazda recenzja jest wynikiem wielogodzinnych testow i doglebnej analizy.
+                    </p>
+                    <p class="about-text" data-i18n="about.mission.p3">
+                        Wierzymy w przejrzystosc - dlatego zawsze jasno informujemy o naszych metodach testowania, kryteriach oceny oraz ewentualnych powazaniach partnerskich. Naszym celem jest pomoc uzytkownikom w znalezieniu idealnego oprogramowania dopasowanego do ich potrzeb i budzetu.
+                    </p>
+                </div>
+                <div class="about-image-box">
+                    <div class="decorative-box">
+                        <span class="decorative-emoji">&#128640;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== VALUES SECTION ========== -->
+    <section class="values-section fade-in">
+        <div class="container">
+            <h2 class="section-title section-title-center" data-i18n="about.values">Nasze Wartosci</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">&#127919;</div>
+                    <h3 class="value-title" data-i18n="about.value1.title">Uczciwosc</h3>
+                    <p class="value-description" data-i18n="about.value1.desc">
+                        Kazda recenzja jest uczciwa i bezstronna. Nie przyjmujemy platnosci za pozytywne oceny. Nasze rekomendacje opieraja sie wylacznie na jakosci produktu i doswiadczeniu uzytkownika.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">&#128300;</div>
+                    <h3 class="value-title" data-i18n="about.value2.title">Dokladnosc</h3>
+                    <p class="value-description" data-i18n="about.value2.desc">
+                        Kazde oprogramowanie przechodzi przez dokladne i wieloetapowe testy. Analizujemy wydajnosc, funkcjonalnosc, bezpieczenstwo, interfejs uzytkownika i stosunek jakosci do ceny.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">&#128065;</div>
+                    <h3 class="value-title" data-i18n="about.value3.title">Przejrzystosc</h3>
+                    <p class="value-description" data-i18n="about.value3.desc">
+                        Otwarcie informujemy o wszystkich powazaniach partnerskich i linkach afiliacyjnych. Nasi czytelnicy zawsze wiedza, kiedy mozemy otrzymac prowizje za polecenie produktu.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TEAM SECTION ========== -->
+    <section class="team-section fade-in">
+        <div class="container">
+            <h2 class="section-title section-title-center" data-i18n="about.team.title">Nasz Zespol</h2>
+            <p class="team-description" data-i18n="about.team.desc">
+                Nasz zespol sklada sie z pasjonatow technologii i doswiadczonych testerow oprogramowania. Laczymy wiedze techniczna z praktycznym doswiadczeniem, aby dostarczac rzetelne i wartosciowe recenzje, ktore pomagaja podejmowac swiadome decyzje zakupowe.
+            </p>
+        </div>
+    </section>
+
+    <!-- ========== NEWSLETTER CTA SECTION ========== -->
+    <section class="cta-section fade-in">
+        <div class="container">
+            <div class="cta-box">
+                <h2 class="cta-title" data-i18n="cta.title">Badz na biezaco z najnowszymi recenzjami</h2>
+                <p class="cta-description" data-i18n="cta.desc">
+                    Zapisz sie do naszego newslettera i otrzymuj powiadomienia o nowych recenzjach, poradnikach i ekskluzywnych ofertach oprogramowania.
+                </p>
+                <form class="cta-form">
+                    <input type="email" class="cta-input" data-i18n-placeholder="cta.placeholder" placeholder="Twoj adres e-mail">
+                    <button type="submit" class="cta-button" data-i18n="cta.button">Zapisz sie</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">SS</div>
+                        <span>Software<strong>Slice</strong></span>
+                    </a>
+                    <p class="footer-description" data-i18n="footer.desc">
+                        Niezalezna platforma recenzji oprogramowania. Pomagamy wybrac najlepsze narzedzia dla Twoich potrzeb.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="footer-title" data-i18n="footer.categories">Kategorie</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="footer.cat.antivirus">Antywirusy</a></li>
+                        <li><a href="#" data-i18n="footer.cat.vpn">VPN</a></li>
+                        <li><a href="#" data-i18n="footer.cat.office">Biurowe</a></li>
+                        <li><a href="#" data-i18n="footer.cat.graphics">Grafika</a></li>
+                        <li><a href="#" data-i18n="footer.cat.dev">Programowanie</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="footer-title" data-i18n="footer.company">Firma</h4>
+                    <ul>
+                        <li><a href="about.html" data-i18n="footer.company.about">O Nas</a></li>
+                        <li><a href="contact.html" data-i18n="footer.company.contact">Kontakt</a></li>
+                        <li><a href="#" data-i18n="footer.company.careers">Kariera</a></li>
+                        <li><a href="#" data-i18n="footer.company.press">Dla mediow</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="footer-title" data-i18n="footer.legal">Prawne</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="footer.legal.privacy">Polityka prywatnosci</a></li>
+                        <li><a href="#" data-i18n="footer.legal.terms">Regulamin</a></li>
+                        <li><a href="#" data-i18n="footer.legal.cookies">Polityka cookies</a></li>
+                        <li><a href="#" data-i18n="footer.legal.affiliate">Ujawnienie afiliacji</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-i18n="footer.copy">&copy; 2025 SoftwareSlice. Wszelkie prawa zastrzezone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

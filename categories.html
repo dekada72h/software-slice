@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Przeglądaj wszystkie kategorie oprogramowania na SoftwareSlice. Znajdź najlepsze programy biurowe, graficzne, programistyczne, bezpieczeństwa i wiele więcej.">
+    <title>Kategorie Oprogramowania | SoftwareSlice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .lang-switcher { display: flex; gap: 4px; margin-left: 12px; }
+        .lang-btn { padding: 6px 12px; background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 6px; color: #888; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .lang-btn:hover, .lang-btn.active { border-color: #FFD700; color: #FFD700; background: rgba(255,215,0,0.15); }
+
+        /* Page Header */
+        .page-header {
+            padding: 120px 0 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .breadcrumb a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #FFD700;
+        }
+
+        .breadcrumb .separator {
+            color: #555;
+        }
+
+        .breadcrumb .current {
+            color: #FFD700;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header h1 span {
+            color: #FFD700;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: #AAAAAA;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Categories Grid */
+        .categories-section {
+            padding: 40px 0 80px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .category-card-lg {
+            background: linear-gradient(145deg, #1A1A1A, #141414);
+            border: 1px solid #2A2A2A;
+            border-radius: 16px;
+            padding: 36px 32px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .category-card-lg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .category-card-lg:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.05);
+        }
+
+        .category-card-lg:hover::before {
+            opacity: 1;
+        }
+
+        .category-card-lg .card-emoji {
+            font-size: 2.8rem;
+            margin-bottom: 4px;
+        }
+
+        .category-card-lg .card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            letter-spacing: -0.3px;
+        }
+
+        .category-card-lg .card-description {
+            font-size: 0.92rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .category-card-lg .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid #2A2A2A;
+        }
+
+        .category-card-lg .card-count {
+            font-size: 0.85rem;
+            color: #FFD700;
+            font-weight: 600;
+        }
+
+        .category-card-lg .card-arrow {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFD700;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .category-card-lg:hover .card-arrow {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateX(4px);
+        }
+
+        /* Newsletter CTA */
+        .newsletter-cta {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .newsletter-box {
+            max-width: 640px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #1A1A1A, #141414);
+            border: 1px solid #2A2A2A;
+            border-radius: 20px;
+            padding: 48px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
+        }
+
+        .newsletter-box h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-box h2 span {
+            color: #FFD700;
+        }
+
+        .newsletter-box p {
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            padding: 14px 20px;
+            background: #0D0D0D;
+            border: 1px solid #2A2A2A;
+            border-radius: 10px;
+            color: #FFFFFF;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-form input[type="email"]::placeholder {
+            color: #555;
+        }
+
+        .newsletter-form input[type="email"]:focus {
+            border-color: #FFD700;
+        }
+
+        .newsletter-form button {
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none;
+            border-radius: 10px;
+            color: #000000;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .category-card-lg {
+                padding: 28px 24px;
+            }
+
+            .newsletter-box {
+                padding: 36px 24px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">SS</span>
+                <span class="logo-text">Software<span>Slice</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-i18n="nav_home">Strona G&#322;&#243;wna</a>
+                <a href="categories.html" class="nav-link active" data-i18n="nav_categories">Kategorie</a>
+                <a href="#" class="nav-link" data-i18n="nav_reviews">Recenzje</a>
+                <a href="about.html" class="nav-link" data-i18n="nav_about">O Nas</a>
+                <a href="contact.html" class="nav-link" data-i18n="nav_contact">Kontakt</a>
+            </div>
+            <div class="nav-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Szukaj oprogramowania..." data-i18n-placeholder="search_placeholder">
+                    <button class="search-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="pl">PL</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <button class="mobile-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header fade-in">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html" data-i18n="nav_home">Strona G&#322;&#243;wna</a>
+                <span class="separator">&gt;</span>
+                <span class="current" data-i18n="nav_categories">Kategorie</span>
+            </nav>
+            <h1 data-i18n="categories_title">Kategorie <span>Oprogramowania</span></h1>
+            <p data-i18n="categories_description">Przegl&#261;daj nasze starannie wyselekcjonowane kategorie oprogramowania. Ka&#380;da kategoria zawiera szczeg&#243;&#322;owe recenzje, por&#243;wnania i oceny najlepszych narz&#281;dzi dost&#281;pnych na rynku.</p>
+        </div>
+    </header>
+
+    <!-- Categories Grid Section -->
+    <section class="categories-section">
+        <div class="categories-grid">
+
+            <!-- Biuro i Produktywnosc -->
+            <a href="category/office-productivity.html" class="category-card-lg fade-in">
+                <div class="card-emoji">&#128188;</div>
+                <div class="card-title" data-i18n="cat_office">Biuro i Produktywno&#347;&#263;</div>
+                <div class="card-description" data-i18n="cat_office_desc">Kompleksowe recenzje pakiet&#243;w biurowych, edytor&#243;w tekstu, arkuszy kalkulacyjnych i narz&#281;dzi do prezentacji. Znajd&#378; idealne rozwi&#261;zanie dla swojego biura.</div>
+                <div class="card-meta">
+                    <span class="card-count" data-i18n="cat_office_count">12 program&#243;w</span>
+                    <span class="card-arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <!-- Projektowanie i Grafika -->
+            <a href="category/design-creative.html" class="category-card-lg fade-in">
+                <div class="card-emoji">&#127912;</div>
+                <div class="card-title" data-i18n="cat_design">Projektowanie i Grafika</div>
+                <div class="card-description" data-i18n="cat_design_desc">Narz&#281;dzia do projektowania graficznego, edycji zdj&#281;&#263;, tworzenia ilustracji i grafiki wektorowej. Od profesjonalnych suite&#243;w po darmowe alternatywy.</div>
+                <div class="card-meta">
+                    <span class="card-count" data-i18n="cat_design_count">10 program&#243;w</span>
+                    <span class="card-arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <!-- Narzedzia Programistyczne -->
+            <a href="category/development-tools.html" class="category-card-lg fade-in">
+                <div class="card-emoji">&#128421;&#65039;</div>
+                <div class="card-title" data-i18n="cat_dev">Narz&#281;dzia Programistyczne</div>
+                <div class="card-description" data-i18n="cat_dev_desc">Edytory kodu, &#347;rodowiska IDE, systemy kontroli wersji i narz&#281;dzia deweloperskie. Wszystko czego potrzebuje nowoczesny programista.</div>
+                <div class="card-meta">
+                    <span class="card-count" data-i18n="cat_dev_count">15 program&#243;w</span>
+                    <span class="card-arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <!-- Bezpieczenstwo i Prywatnosc -->
+            <a href="category/security-privacy.html" class="category-card-lg fade-in">
+                <div class="card-emoji">&#128737;&#65039;</div>
+                <div class="card-title" data-i18n="cat_security">Bezpiecze&#324;stwo i Prywatno&#347;&#263;</div>
+                <div class="card-description" data-i18n="cat_security_desc">Programy antywirusowe, VPN, mened&#380;ery hase&#322; i narz&#281;dzia do ochrony prywatno&#347;ci. Zabezpiecz swoje dane i urz&#261;dzenia.</div>
+                <div class="card-meta">
+                    <span class="card-count" data-i18n="cat_security_count">8 program&#243;w</span>
+                    <span class="card-arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <!-- AI i Automatyzacja -->
+            <a href="category/ai-automation.html" class="category-card-lg fade-in">
+                <div class="card-emoji">&#129302;</div>
+                <div class="card-title" data-i18n="cat_ai">AI i Automatyzacja</div>
+                <div class="card-description" data-i18n="cat_ai_desc">Narz&#281;dzia wykorzystuj&#261;ce sztuczn&#261; inteligencj&#281;, chatboty, automatyzacja zada&#324; i asystenci AI. Odkryj przysz&#322;o&#347;&#263; oprogramowania.</div>
+                <div class="card-meta">
+                    <span class="card-count" data-i18n="cat_ai_count">11 program&#243;w</span>
+                    <span class="card-arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <!-- Wideo i Audio -->
+            <a href="category/video-audio.html" class="category-card-lg fade-in">
+                <div class="card-emoji">&#127910;</div>
+                <div class="card-title" data-i18n="cat_video">Wideo i Audio</div>
+                <div class="card-description" data-i18n="cat_video_desc">Edytory wideo, narz&#281;dzia do obr&#243;bki d&#378;wi&#281;ku, oprogramowanie do streamingu i konwertery multimedi&#243;w. Tworzenie tre&#347;ci na najwy&#380;szym poziomie.</div>
+                <div class="card-meta">
+                    <span class="card-count" data-i18n="cat_video_count">9 program&#243;w</span>
+                    <span class="card-arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <!-- Chmura i Przechowywanie -->
+            <a href="category/cloud-storage.html" class="category-card-lg fade-in">
+                <div class="card-emoji">&#9729;&#65039;</div>
+                <div class="card-title" data-i18n="cat_cloud">Chmura i Przechowywanie</div>
+                <div class="card-description" data-i18n="cat_cloud_desc">Us&#322;ugi przechowywania w chmurze, synchronizacja plik&#243;w, kopie zapasowe i rozwi&#261;zania do udost&#281;pniania danych. Twoje pliki zawsze pod r&#281;k&#261;.</div>
+                <div class="card-meta">
+                    <span class="card-count" data-i18n="cat_cloud_count">7 program&#243;w</span>
+                    <span class="card-arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <!-- Komunikacja -->
+            <a href="category/communication.html" class="category-card-lg fade-in">
+                <div class="card-emoji">&#128172;</div>
+                <div class="card-title" data-i18n="cat_communication">Komunikacja</div>
+                <div class="card-description" data-i18n="cat_communication_desc">Komunikatory, platformy wideokonferencyjne, klienci e-mail i narz&#281;dzia do wsp&#243;&#322;pracy zespo&#322;owej. Pozostaw w kontakcie ze swoim zespo&#322;em.</div>
+                <div class="card-meta">
+                    <span class="card-count" data-i18n="cat_communication_count">10 program&#243;w</span>
+                    <span class="card-arrow">&rarr;</span>
+                </div>
+            </a>
+
+            <!-- Zarzadzanie Projektami -->
+            <a href="category/project-management.html" class="category-card-lg fade-in">
+                <div class="card-emoji">&#128200;</div>
+                <div class="card-title" data-i18n="cat_pm">Zarz&#261;dzanie Projektami</div>
+                <div class="card-description" data-i18n="cat_pm_desc">Narz&#281;dzia do planowania projekt&#243;w, tablice Kanban, &#347;ledzenie zada&#324; i zarz&#261;dzanie zasobami. Prowad&#378; swoje projekty efektywnie.</div>
+                <div class="card-meta">
+                    <span class="card-count" data-i18n="cat_pm_count">6 program&#243;w</span>
+                    <span class="card-arrow">&rarr;</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter-cta fade-in">
+        <div class="container">
+            <div class="newsletter-box">
+                <h2 data-i18n="newsletter_title">B&#261;d&#378; na <span>bie&#380;&#261;co</span></h2>
+                <p data-i18n="newsletter_desc">Zapisz si&#281; do naszego newslettera i otrzymuj najnowsze recenzje, por&#243;wnania i wiadomo&#347;ci ze &#347;wiata oprogramowania prosto na swoj&#261; skrzynk&#281;.</p>
+                <form class="newsletter-form" action="#" method="post">
+                    <input type="email" placeholder="Tw&#243;j adres e-mail..." data-i18n-placeholder="newsletter_placeholder" required>
+                    <button type="submit" data-i18n="newsletter_btn">Subskrybuj</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">SS</span>
+                        <span class="logo-text">Software<span>Slice</span></span>
+                    </a>
+                    <p class="footer-desc" data-i18n="footer_desc">Twoje zaufane &#378;r&#243;d&#322;o rzetelnych recenzji oprogramowania. Pomagamy wybra&#263; najlepsze narz&#281;dzia dla Twoich potrzeb.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="footer_links">Szybkie Linki</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="nav_home">Strona G&#322;&#243;wna</a></li>
+                        <li><a href="categories.html" data-i18n="nav_categories">Kategorie</a></li>
+                        <li><a href="#" data-i18n="nav_reviews">Recenzje</a></li>
+                        <li><a href="about.html" data-i18n="nav_about">O Nas</a></li>
+                        <li><a href="contact.html" data-i18n="nav_contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="footer_categories">Kategorie</h4>
+                    <ul>
+                        <li><a href="category/office-productivity.html" data-i18n="cat_office">Biuro i Produktywno&#347;&#263;</a></li>
+                        <li><a href="category/design-creative.html" data-i18n="cat_design">Projektowanie i Grafika</a></li>
+                        <li><a href="category/development-tools.html" data-i18n="cat_dev">Narz&#281;dzia Programistyczne</a></li>
+                        <li><a href="category/security-privacy.html" data-i18n="cat_security">Bezpiecze&#324;stwo i Prywatno&#347;&#263;</a></li>
+                        <li><a href="category/ai-automation.html" data-i18n="cat_ai">AI i Automatyzacja</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="footer_more_categories">Wi&#281;cej Kategorii</h4>
+                    <ul>
+                        <li><a href="category/video-audio.html" data-i18n="cat_video">Wideo i Audio</a></li>
+                        <li><a href="category/cloud-storage.html" data-i18n="cat_cloud">Chmura i Przechowywanie</a></li>
+                        <li><a href="category/communication.html" data-i18n="cat_communication">Komunikacja</a></li>
+                        <li><a href="category/project-management.html" data-i18n="cat_pm">Zarz&#261;dzanie Projektami</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_copy">&copy; 2025 SoftwareSlice. Wszelkie prawa zastrze&#380;one.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

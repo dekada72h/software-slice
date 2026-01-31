@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft 365 - Recenzja | SoftwareSlice</title>
+    <meta name="description" content="Szczegolowa recenzja Microsoft 365 - kompletnego pakietu biurowego. Poznaj funkcje, ceny, zalety i wady. Ocena redakcji: 4.5/5.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .lang-switcher {
+            display: flex;
+            gap: 4px;
+            margin-left: 12px;
+        }
+        .lang-btn {
+            padding: 6px 12px;
+            background: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 6px;
+            color: #888;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .lang-btn:hover,
+        .lang-btn.active {
+            border-color: #FFD700;
+            color: #FFD700;
+            background: rgba(255, 215, 0, 0.15);
+        }
+
+        /* Review Hero */
+        .review-hero {
+            padding: 80px 0 40px;
+        }
+        .review-hero .container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .review-hero-image {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.02));
+            border: 1px solid #2A2A2A;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            font-size: 8rem;
+            user-select: none;
+        }
+        .review-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05));
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #FFD700;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            width: fit-content;
+        }
+        .featured-badge::before {
+            content: "\2605";
+            font-size: 1rem;
+        }
+        .review-info h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin: 0;
+        }
+        .review-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .review-tag {
+            background: rgba(255, 215, 0, 0.1);
+            color: #FFD700;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 215, 0, 0.25);
+        }
+        .review-stars {
+            display: flex;
+            gap: 3px;
+            color: #FFD700;
+            font-size: 1.1rem;
+        }
+        .review-stars .star-empty {
+            color: #444;
+        }
+        .rating-score {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #FFD700;
+        }
+        .review-date {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        .review-intro {
+            color: #CCCCCC;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Affiliate Box */
+        .affiliate-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.06), rgba(255, 215, 0, 0.01));
+            border: 1px solid #2A2A2A;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-top: 8px;
+        }
+        .affiliate-box-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+        .affiliate-price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #FFD700;
+            margin-bottom: 16px;
+        }
+        .affiliate-box .btn-primary {
+            display: inline-block;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000000;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+        .affiliate-box .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+        .affiliate-disclaimer {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        /* Review Content */
+        .review-content {
+            padding: 40px 0 60px;
+        }
+        .review-content h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+            margin-top: 48px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .review-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #FFD700;
+            border-radius: 2px;
+        }
+        .review-content h2:first-child {
+            margin-top: 0;
+        }
+        .review-content p {
+            color: #CCCCCC;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #2A2A2A;
+            border-radius: 12px;
+            padding: 18px 20px;
+            transition: border-color 0.3s ease;
+        }
+        .features-list li:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+        .feature-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .feature-text strong {
+            display: block;
+            color: #FFFFFF;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .feature-text span {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Pros & Cons */
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 28px 0;
+        }
+        .pros, .cons {
+            border-radius: 16px;
+            padding: 28px 32px;
+            border: 1px solid #2A2A2A;
+        }
+        .pros {
+            background: rgba(34, 197, 94, 0.04);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+        .cons {
+            background: rgba(239, 68, 68, 0.04);
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+        .pros h3 {
+            color: #22C55E;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cons h3 {
+            color: #EF4444;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pros ul, .cons ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .pros ul li, .cons ul li {
+            padding: 10px 0;
+            color: #CCCCCC;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .pros ul li:last-child, .cons ul li:last-child {
+            border-bottom: none;
+        }
+        .pros ul li::before {
+            content: "\2713";
+            color: #22C55E;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .cons ul li::before {
+            content: "\2717";
+            color: #EF4444;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Pricing Table */
+        .pricing-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 24px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #2A2A2A;
+        }
+        .pricing-table thead th {
+            background: rgba(255, 215, 0, 0.08);
+            color: #FFD700;
+            padding: 16px 24px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #2A2A2A;
+        }
+        .pricing-table tbody td {
+            padding: 18px 24px;
+            color: #CCCCCC;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .pricing-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .pricing-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .pricing-table .plan-name {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+        .pricing-table .plan-price {
+            color: #FFD700;
+            font-weight: 700;
+        }
+
+        /* Verdict Box */
+        .verdict-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.02));
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .verdict-box h2 {
+            text-align: center;
+            margin-top: 0 !important;
+        }
+        .verdict-box h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .verdict-score {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #FFD700;
+            margin: 16px 0;
+            letter-spacing: -1px;
+        }
+        .verdict-box p {
+            max-width: 680px;
+            margin: 0 auto 16px;
+            text-align: center;
+        }
+        .verdict-stars {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            font-size: 1.8rem;
+            color: #FFD700;
+            margin-top: 12px;
+        }
+        .verdict-stars .star-empty {
+            color: #444;
+        }
+
+        /* Similar Reviews */
+        .similar-reviews {
+            padding: 60px 0;
+            border-top: 1px solid #2A2A2A;
+        }
+        .similar-reviews h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        .similar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .similar-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #2A2A2A;
+            border-radius: 16px;
+            padding: 28px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .similar-card:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+        .similar-card-icon {
+            font-size: 3rem;
+            margin-bottom: 4px;
+        }
+        .similar-card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        .similar-card-desc {
+            font-size: 0.88rem;
+            color: #999;
+            line-height: 1.5;
+        }
+        .similar-card-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 8px;
+        }
+        .similar-card-rating .stars {
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+        .similar-card-rating .score {
+            color: #FFD700;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Bottom Affiliate */
+        .bottom-affiliate {
+            margin-top: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .review-hero .container {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .review-hero-image {
+                height: 200px;
+                max-width: 280px;
+            }
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+            .similar-grid {
+                grid-template-columns: 1fr;
+            }
+            .review-info h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">SS</div>
+                <span>Software<strong>Slice</strong></span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Strona Glowna</a>
+                <a href="../categories.html">Kategorie</a>
+                <a href="#" class="active">Recenzje</a>
+                <a href="../about.html">O Nas</a>
+                <a href="../contact.html">Kontakt</a>
+            </div>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" placeholder="Szukaj oprogramowania...">
+                    <button class="search-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="M21 21l-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active">PL</button>
+                    <button class="lang-btn">EN</button>
+                </div>
+            </div>
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Review Hero Section -->
+    <section class="review-hero fade-in">
+        <div class="container">
+            <div class="review-hero-image">
+                &#128188;
+            </div>
+            <div class="review-info">
+                <div class="featured-badge">Wybor Redakcji</div>
+                <h1>Microsoft 365 - Kompletny Pakiet Biurowy</h1>
+                <div class="review-meta-row">
+                    <span class="review-tag">Biuro</span>
+                    <div class="review-stars">
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span class="star-empty">&#9733;</span>
+                    </div>
+                    <span class="rating-score">4.5/5</span>
+                    <span class="review-date">Styczen 2026</span>
+                </div>
+                <p class="review-intro">
+                    Microsoft 365 to wiodacy na swiecie pakiet aplikacji biurowych, laczacy w sobie klasyczne narzedzia desktopowe z nowoczesna chmura obliczeniowa. Od lat stanowi standard w srodowisku korporacyjnym, a dzieki modelowi subskrypcyjnemu zyskal rowniez ogromna popularnosc wsrod uzytkownikow indywidualnych. W naszej recenzji przyjrzymy sie dokladnie, czy wciaz jest wart swojej ceny w 2026 roku.
+                </p>
+                <div class="affiliate-box">
+                    <div class="affiliate-box-title">Wyprobuj Microsoft 365</div>
+                    <div class="affiliate-price">Od 29,99 zl/miesiac</div>
+                    <a href="#" class="btn-primary">Wyprobuj Teraz</a>
+                    <p class="affiliate-disclaimer">* Linki partnerskie - mozemy otrzymac prowizje za zakupy dokonane za posrednictwem naszych linkow. Nie wplywa to na obiektywnosc naszych recenzji ani na cene produktu dla uzytkownika.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Content -->
+    <section class="review-content fade-in">
+        <div class="container">
+
+            <!-- Przeglad -->
+            <h2>Przeglad</h2>
+            <p>
+                Microsoft 365 (dawniej Office 365) to kompleksowy ekosystem narzedzi produktywnosciowych opracowany przez firme Microsoft. Pakiet obejmuje klasyczne aplikacje biurowe znane od dziesiecioleci - Word, Excel, PowerPoint i Outlook - wzbogacone o nowoczesne rozwiazania chmurowe, takie jak OneDrive, Microsoft Teams oraz SharePoint. W wersji z 2026 roku Microsoft znaczaco rozbudowal mozliwosci sztucznej inteligencji, integrujac asystenta Copilot bezposrednio w kazdej z glownych aplikacji, co rewolucjonizuje sposob pracy z dokumentami, arkuszami kalkulacyjnymi i prezentacjami.
+            </p>
+            <p>
+                Subskrypcja Microsoft 365 zapewnia ciagle aktualizacje i dostep do najnowszych funkcji bez koniecznosci kupowania kolejnych wersji oprogramowania. Uzytkownik otrzymuje rowniez przestrzen dyskowa w chmurze OneDrive (od 1 TB), zaawansowane narzedzia do wspolpracy w czasie rzeczywistym oraz mozliwosc korzystania z aplikacji na wielu urzadzeniach jednoczesnie - komputerach, tabletach i smartfonach. Dzieki pelnej synchronizacji miedzy urzadzeniami, praca nad dokumentami jest plynna i bezproblemowa niezaleznie od tego, gdzie aktualnie sie znajdujesz.
+            </p>
+
+            <!-- Kluczowe Funkcje -->
+            <h2>Kluczowe Funkcje</h2>
+            <ul class="features-list">
+                <li>
+                    <span class="feature-icon">&#128196;</span>
+                    <div class="feature-text">
+                        <strong>Microsoft Word</strong>
+                        <span>Zaawansowany edytor tekstu z obsluga Copilot AI. Tworzenie dokumentow, raportow i publikacji z profesjonalnym formatowaniem, sprawdzaniem pisowni w wielu jezykach oraz mozliwoscia wspolpracy w czasie rzeczywistym z innymi uzytkownikami.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">&#128202;</span>
+                    <div class="feature-text">
+                        <strong>Microsoft Excel</strong>
+                        <span>Najpotezniejszy arkusz kalkulacyjny na rynku z obsluga zaawansowanych formuL, tabel przestawnych, makr VBA oraz wizualizacji danych. Nowe funkcje AI pomagaja w automatycznej analizie trendow i generowaniu wykresow.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">&#128250;</span>
+                    <div class="feature-text">
+                        <strong>Microsoft PowerPoint</strong>
+                        <span>Tworzenie profesjonalnych prezentacji z szerokim wyborem szablonow, animacji i przejsc. Copilot moze automatycznie generowac prezentacje na podstawie dokumentow lub prostych opisow tekstowych.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">&#9729;</span>
+                    <div class="feature-text">
+                        <strong>OneDrive</strong>
+                        <span>Chmura obliczeniowa z minimum 1 TB przestrzeni dyskowej. Automatyczna synchronizacja plikow, wersjonowanie dokumentow, udostepnianie z kontrola dostepu oraz pelna integracja z eksploratorem plikow Windows i macOS.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">&#128172;</span>
+                    <div class="feature-text">
+                        <strong>Microsoft Teams</strong>
+                        <span>Platforma komunikacyjna do rozmow tekstowych, glosowych i wideo. Obsluga spotkan online z udzialem do 300 osob, wspoldzielenie ekranu, nagrywanie spotkan, transkrypcja w czasie rzeczywistym i integracja z kalendarzem Outlook.</span>
+                    </div>
+                </li>
+                <li>
+                    <span class="feature-icon">&#9993;</span>
+                    <div class="feature-text">
+                        <strong>Microsoft Outlook</strong>
+                        <span>Zaawansowany klient poczty elektronicznej z inteligentnym sortowaniem wiadomosci, zintegrowanym kalendarzem, menedzerem zadan i kontaktow. Obsluga wielu kont email oraz zaawansowane filtry antyspamowe.</span>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Zalety i Wady -->
+            <h2>Zalety i Wady</h2>
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>&#10003; Zalety</h3>
+                    <ul>
+                        <li>Najbardziej rozbudowany i funkcjonalny pakiet biurowy na rynku, stanowiacy branzowy standard w biznesie i edukacji na calym swiecie</li>
+                        <li>Doskonala integracja asystenta AI Copilot, ktory realnie przyspiesza prace z dokumentami, arkuszami i prezentacjami - oszczedzajac nawet kilka godzin tygodniowo</li>
+                        <li>Bezproblemowa wspolpraca w czasie rzeczywistym z wieloma uzytkownikami na jednym dokumencie, z pelna historia zmian i mozliwoscia cofania edycji</li>
+                        <li>Ogromna przestrzen w chmurze OneDrive (1 TB na uzytkownika) z automatyczna synchronizacja na wszystkich urzadzeniach - Windows, macOS, iOS i Android</li>
+                        <li>Regularne aktualizacje zabezpieczen i nowych funkcji w ramach subskrypcji, bez dodatkowych kosztow - zawsze masz najnowsza wersje aplikacji</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h3>&#10007; Wady</h3>
+                    <ul>
+                        <li>Model subskrypcyjny oznacza stale koszty miesieczne - na przestrzeni lat laczny wydatek znacznie przewyzsza jednorazowy zakup licencji wieczystej</li>
+                        <li>Aplikacje sa bardzo zasobozerne i moga spowalniacz starsze komputery, szczegolnie przy jednoczesnym uruchomieniu kilku programow z pakietu</li>
+                        <li>Interfejs uzytkownika stal sie bardzo rozbudowany i skomplikowany - nowi uzytkownicy moga czuc sie przytloczeni iloscia opcji i zagniezdzonych menu</li>
+                        <li>Najlepsze funkcje AI Copilot wymagaja dodatkowej, dosc wysokiej oplaty subskrypcyjnej, co czyni pelne wykorzystanie pakietu kosztownym rozwiazaniem</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Cennik -->
+            <h2>Cennik</h2>
+            <p>
+                Microsoft oferuje kilka planow subskrypcyjnych dostosowanych do roznych potrzeb uzytkownikow. Ponizej przedstawiamy aktualne ceny na styczen 2026 roku. Warto pamietac, ze Microsoft czesto oferuje promocje dla nowych uzytkownikow, a takze darmowy okres probny trwajacy 30 dni.
+            </p>
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Plan</th>
+                        <th>Cena</th>
+                        <th>Funkcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="plan-name">Microsoft 365 Personal</td>
+                        <td class="plan-price">29,99 zl/mies.</td>
+                        <td>1 uzytkownik, 1 TB OneDrive, pelny pakiet aplikacji desktopowych i mobilnych, 60 minut Skype miesiecznie</td>
+                    </tr>
+                    <tr>
+                        <td class="plan-name">Microsoft 365 Family</td>
+                        <td class="plan-price">43,99 zl/mies.</td>
+                        <td>Do 6 uzytkownikow, 6 TB OneDrive (1 TB na osobe), pelny pakiet aplikacji, kontrola rodzicielska, sejf osobisty</td>
+                    </tr>
+                    <tr>
+                        <td class="plan-name">Microsoft 365 Business Basic</td>
+                        <td class="plan-price">24,80 zl/mies.</td>
+                        <td>Email biznesowy z domena firmowa, 1 TB OneDrive, Teams, aplikacje webowe (bez wersji desktopowych)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Werdykt -->
+            <div class="verdict-box">
+                <h2>Werdykt</h2>
+                <div class="verdict-score">4.5/5</div>
+                <p>
+                    Microsoft 365 pozostaje niekwestionowanym liderem wsrod pakietow biurowych i w 2026 roku trudno znalezc dla niego rownorzedna alternatywe pod wzgledem funkcjonalnosci. Integracja sztucznej inteligencji Copilot przenosi produktywnosc na zupelnie nowy poziom, a mozliwosci wspolpracy w chmurze sa po prostu bezkonkurencyjne. Jedyna istotna bariera pozostaje cena - model subskrypcyjny moze byc kosztowny dla uzytkownikow indywidualnych, a funkcje AI wymagaja dodatkowej oplaty. Mimo to, dla profesjonalistow i firm, Microsoft 365 to inwestycja, ktora zwraca sie wielokrotnie dzieki oszczednosci czasu i podniesieniu jakosci pracy. Smialo przyznajemy mu tytul Wyboru Redakcji.
+                </p>
+                <div class="verdict-stars">
+                    <span>&#9733;</span>
+                    <span>&#9733;</span>
+                    <span>&#9733;</span>
+                    <span>&#9733;</span>
+                    <span class="star-empty">&#9733;</span>
+                </div>
+            </div>
+
+            <!-- Bottom Affiliate Box -->
+            <div class="affiliate-box bottom-affiliate">
+                <div class="affiliate-box-title">Przekonaj sie sam - wyprobuj Microsoft 365</div>
+                <div class="affiliate-price">Od 29,99 zl/miesiac | 30 dni za darmo</div>
+                <a href="#" class="btn-primary">Rozpocznij Darmowy Okres Probny</a>
+                <p class="affiliate-disclaimer">* Link partnerski. Klikajac powyzszy przycisk, mozesz zostac przekierowany na strone Microsoft. Mozemy otrzymac prowizje za zakupy dokonane za posrednictwem tego linku. Cena produktu dla Ciebie pozostaje bez zmian.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Podobne Recenzje -->
+    <section class="similar-reviews fade-in">
+        <div class="container">
+            <h2>Podobne Recenzje</h2>
+            <div class="similar-grid">
+                <a href="#" class="similar-card">
+                    <div class="similar-card-icon">&#127760;</div>
+                    <div class="similar-card-title">Google Workspace</div>
+                    <div class="similar-card-desc">
+                        Chmurowy pakiet biurowy od Google. Dokumenty, Arkusze, Prezentacje, Gmail i Dysk Google w jednym ekosystemie. Idealny dla zespolow stawiajacych na wspolprace online i prostote obslugi.
+                    </div>
+                    <div class="similar-card-rating">
+                        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                        <span class="score">4.2/5</span>
+                    </div>
+                </a>
+                <a href="#" class="similar-card">
+                    <div class="similar-card-icon">&#128214;</div>
+                    <div class="similar-card-title">LibreOffice</div>
+                    <div class="similar-card-desc">
+                        Darmowy i otwartozdrodlowy pakiet biurowy, stanowiacy najlepsza bezplatna alternatywe dla Microsoft Office. Writer, Calc i Impress oferuja solidna funkcjonalnosc bez zadnych kosztow subskrypcyjnych.
+                    </div>
+                    <div class="similar-card-rating">
+                        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                        <span class="score">3.8/5</span>
+                    </div>
+                </a>
+                <a href="#" class="similar-card">
+                    <div class="similar-card-icon">&#128221;</div>
+                    <div class="similar-card-title">Notion</div>
+                    <div class="similar-card-desc">
+                        Wszechstronne narzedzie do zarzadzania wiedza, notatkami i projektami. Laczy w sobie edytor tekstu, baze danych, tablice Kanban i wiki. Rosnacy konkurent dla tradycyjnych pakietow biurowych.
+                    </div>
+                    <div class="similar-card-rating">
+                        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                        <span class="score">4.3/5</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="../index.html" class="logo">
+                        <div class="logo-icon">SS</div>
+                        <span>Software<strong>Slice</strong></span>
+                    </a>
+                    <p class="footer-desc">Twoje zrodlo rzetelnych recenzji oprogramowania. Pomagamy wybrac najlepsze narzedzia do pracy, nauki i rozrywki.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Nawigacja</h4>
+                    <ul>
+                        <li><a href="../index.html">Strona Glowna</a></li>
+                        <li><a href="../categories.html">Kategorie</a></li>
+                        <li><a href="#">Recenzje</a></li>
+                        <li><a href="../about.html">O Nas</a></li>
+                        <li><a href="../contact.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Kategorie</h4>
+                    <ul>
+                        <li><a href="../categories.html">Pakiety Biurowe</a></li>
+                        <li><a href="../categories.html">Narzedzia AI</a></li>
+                        <li><a href="../categories.html">Bezpieczenstwo</a></li>
+                        <li><a href="../categories.html">Grafika i Design</a></li>
+                        <li><a href="../categories.html">Programowanie</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Informacje</h4>
+                    <ul>
+                        <li><a href="../about.html">O SoftwareSlice</a></li>
+                        <li><a href="../contact.html">Kontakt z Redakcja</a></li>
+                        <li><a href="#">Polityka Prywatnosci</a></li>
+                        <li><a href="#">Regulamin</a></li>
+                        <li><a href="#">Ujawnienie Afiliacji</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoftwareSlice. Wszelkie prawa zastrzezone. Wszystkie znaki towarowe naleza do ich wlascicieli.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

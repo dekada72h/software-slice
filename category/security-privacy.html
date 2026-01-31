@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bezpieczenstwo i Prywatnosc - SoftwareSlice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .lang-switcher { display: flex; gap: 4px; margin-left: 12px; }
+        .lang-btn { padding: 6px 12px; background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 6px; color: #888; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .lang-btn:hover, .lang-btn.active { border-color: #FFD700; color: #FFD700; background: rgba(255,215,0,0.15); }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">SS</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Strona Glowna</a></li>
+                <li><a href="../categories.html">Kategorie</a></li>
+                <li><a href="#">Recenzje</a></li>
+                <li><a href="../about.html">O Nas</a></li>
+                <li><a href="../contact.html">Kontakt</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="search-btn" aria-label="Szukaj">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <div class="lang-switcher">
+                    <button class="lang-btn active">PL</button>
+                    <button class="lang-btn">EN</button>
+                </div>
+                <button class="mobile-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header fade-in">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Strona Glowna</a> &gt; <a href="../categories.html">Kategorie</a> &gt; <span>Bezpieczenstwo i Prywatnosc</span>
+            </div>
+            <div class="category-header">
+                <span class="category-icon">&#128737;</span>
+                <h1>Bezpieczenstwo i Prywatnosc</h1>
+            </div>
+            <p class="category-description">Zabezpiecz swoje dane i prywatnosc online dzieki najlepszym narzediom ochronnym. Porownaj programy antywirusowe, VPN-y i menedzery hasel, ktore zapewnia Ci bezpieczenstwo w sieci.</p>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <section class="filter-bar fade-in">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active">Wszystkie</button>
+                <button class="filter-btn">Darmowe</button>
+                <button class="filter-btn">Platne</button>
+                <button class="filter-btn">Popularne</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Grid -->
+    <section class="reviews-section fade-in">
+        <div class="container">
+            <div class="reviews-grid">
+
+                <!-- Review Card 1: NordVPN -->
+                <a href="../review/sample-review.html" class="review-card">
+                    <div class="review-card-image">
+                        <span class="emoji-icon">&#128272;</span>
+                    </div>
+                    <div class="review-card-body">
+                        <span class="review-tag">Bezpieczenstwo</span>
+                        <span class="review-date">Styczen 2026</span>
+                        <h3>NordVPN</h3>
+                        <p>Jeden z najpopularniejszych serwisow VPN na swiecie z tysiącami serwerow w ponad 60 krajach. Zapewnia silne szyfrowanie i ochrone prywatnosci dla uzytkownikow indywidualnych i biznesowych.</p>
+                    </div>
+                    <div class="review-card-footer">
+                        <div class="stars">
+                            <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span>
+                        </div>
+                        <span class="rating-score">4.5/5</span>
+                    </div>
+                </a>
+
+                <!-- Review Card 2: Bitdefender -->
+                <a href="../review/sample-review.html" class="review-card">
+                    <div class="review-card-image">
+                        <span class="emoji-icon">&#128737;</span>
+                    </div>
+                    <div class="review-card-body">
+                        <span class="review-tag">Bezpieczenstwo</span>
+                        <span class="review-date">Styczen 2026</span>
+                        <h3>Bitdefender</h3>
+                        <p>Zaawansowany program antywirusowy z wielowarstwowa ochrona przed malware i ransomware. Doskonaly wybor dla uzytkownikow szukajacych kompleksowej ochrony z minimalnymi wymaganiami systemowymi.</p>
+                    </div>
+                    <div class="review-card-footer">
+                        <div class="stars">
+                            <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span>
+                        </div>
+                        <span class="rating-score">4.4/5</span>
+                    </div>
+                </a>
+
+                <!-- Review Card 3: 1Password -->
+                <a href="../review/sample-review.html" class="review-card">
+                    <div class="review-card-image">
+                        <span class="emoji-icon">&#128273;</span>
+                    </div>
+                    <div class="review-card-body">
+                        <span class="review-tag">Bezpieczenstwo</span>
+                        <span class="review-date">Styczen 2026</span>
+                        <h3>1Password</h3>
+                        <p>Profesjonalny menedzer hasel z bezpiecznym przechowywaniem danych logowania i dokumentow. Idealny dla osob prywatnych i zespolow dbajacych o bezpieczenstwo swoich kont online.</p>
+                    </div>
+                    <div class="review-card-footer">
+                        <div class="stars">
+                            <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star empty">&#9733;</span>
+                        </div>
+                        <span class="rating-score">4.6/5</span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>SoftwareSlice</h3>
+                    <p>Twoje zrodlo rzetelnych recenzji oprogramowania.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Nawigacja</h4>
+                    <ul>
+                        <li><a href="../index.html">Strona Glowna</a></li>
+                        <li><a href="../categories.html">Kategorie</a></li>
+                        <li><a href="#">Recenzje</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Informacje</h4>
+                    <ul>
+                        <li><a href="../about.html">O Nas</a></li>
+                        <li><a href="../contact.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Sledz Nas</h4>
+                    <div class="social-links">
+                        <a href="#">Twitter</a>
+                        <a href="#">GitHub</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoftwareSlice. Wszelkie prawa zastrzezone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Polityka Prywatnosci serwisu SoftwareSlice - dowiedz sie, jak zbieramy, wykorzystujemy i chronimy Twoje dane osobowe.">
+    <title>Polityka Prywatnosci - SoftwareSlice</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Inline Styles -->
+    <style>
+        .lang-switcher { display: flex; gap: 4px; margin-left: 12px; }
+        .lang-btn { padding: 6px 12px; background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 6px; color: #888; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .lang-btn:hover, .lang-btn.active { border-color: #FFD700; color: #FFD700; background: rgba(255,215,0,0.15); }
+    </style>
+</head>
+<body>
+
+    <!-- Background Grid -->
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">SS</div>
+                <span>Software</span>Slice
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" data-i18n="nav.home">Strona Glowna</a>
+                <a href="categories.html" data-i18n="nav.categories">Kategorie</a>
+                <a href="#" data-i18n="nav.reviews">Recenzje</a>
+                <a href="about.html" data-i18n="nav.about">O Nas</a>
+                <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
+
+                <div class="nav-search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" placeholder="Szukaj oprogramowania..." data-i18n-placeholder="nav.searchPlaceholder">
+                </div>
+
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="pl">PL</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container fade-in">
+            <div class="breadcrumb">
+                <a href="index.html" data-i18n="nav.home">Strona Glowna</a>
+                <span class="sep">&gt;</span>
+                <span class="current" data-i18n="privacy.breadcrumb">Polityka Prywatnosci</span>
+            </div>
+            <h1 data-i18n="privacy.title">Polityka Prywatnosci</h1>
+        </div>
+    </section>
+
+    <!-- Legal Content -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="legal-content fade-in">
+
+                <p class="last-updated">Ostatnia aktualizacja: 31 stycznia 2026</p>
+
+                <!-- Wprowadzenie -->
+                <h2>1. Wprowadzenie</h2>
+                <p>Witamy w serwisie SoftwareSlice (softwareslice.com). Niniejsza Polityka Prywatnosci opisuje, w jaki sposob zbieramy, wykorzystujemy, przechowujemy i chronimy Twoje dane osobowe podczas korzystania z naszej strony internetowej.</p>
+                <p>SoftwareSlice to portal poswiecony recenzjom oprogramowania, poradnikom i porownaniom narzedzi cyfrowych. Dzialamy jako niezalezny serwis informacyjny, pomagajacy uzytkownikom w wyborze najlepszego oprogramowania dostosowanego do ich potrzeb.</p>
+                <p>Korzystajac z naszego serwisu, akceptujesz zasady opisane w niniejszej Polityce Prywatnosci. Jezeli nie zgadzasz sie z ktorymkolwiek z ponizszych postanowien, prosimy o zaprzestanie korzystania z serwisu.</p>
+
+                <!-- Jakie Dane Zbieramy -->
+                <h2>2. Jakie Dane Zbieramy</h2>
+                <p>W ramach dzialania serwisu SoftwareSlice mozemy zbierac nastepujace rodzaje danych:</p>
+
+                <h3>Dane analityczne (zbierane automatycznie)</h3>
+                <ul>
+                    <li>Adres IP (anonimizowany)</li>
+                    <li>Typ i wersja przegladarki internetowej</li>
+                    <li>System operacyjny urzadzenia</li>
+                    <li>Strony odwiedzane w naszym serwisie oraz czas spedzony na kazdej z nich</li>
+                    <li>Zrodlo ruchu (skad trafiles na nasza strone)</li>
+                    <li>Rozdzielczosc ekranu i typ urzadzenia (komputer, tablet, telefon)</li>
+                </ul>
+
+                <h3>Pliki cookie</h3>
+                <ul>
+                    <li>Pliki cookie analityczne (np. Google Analytics)</li>
+                    <li>Pliki cookie preferencji (np. wybrany jezyk strony, tryb wyswietlania)</li>
+                    <li>Pliki cookie funkcjonalne niezbedne do prawidlowego dzialania serwisu</li>
+                </ul>
+
+                <h3>Dane podawane dobrowolnie</h3>
+                <ul>
+                    <li>Adres e-mail - podawany przy zapisie do naszego newslettera</li>
+                    <li>Imie, adres e-mail i tresc wiadomosci - podawane za posrednictwem formularza kontaktowego</li>
+                    <li>Wszelkie inne informacje, ktore dobrowolnie nam przekazujesz w ramach komunikacji</li>
+                </ul>
+
+                <!-- Jak Wykorzystujemy Dane -->
+                <h2>3. Jak Wykorzystujemy Dane</h2>
+                <p>Zebrane dane wykorzystujemy wylacznie w nastepujacych celach:</p>
+                <ul>
+                    <li><strong>Ulepszanie serwisu</strong> - analiza danych pozwala nam zrozumiec, jak uzytkownicy korzystaja z naszej strony, co umozliwia nam optymalizacje tresci, nawigacji i ogolnego doswiadczenia uzytkownika</li>
+                    <li><strong>Wysylanie newslettera</strong> - jezeli zapisales sie do naszego newslettera, wykorzystujemy Twoj adres e-mail do przesylania informacji o nowych recenzjach, poradnikach i aktualizacjach serwisu</li>
+                    <li><strong>Odpowiadanie na zapytania</strong> - dane z formularza kontaktowego wykorzystujemy wylacznie w celu udzielenia odpowiedzi na Twoje pytania lub uwagi</li>
+                    <li><strong>Zapewnienie bezpieczenstwa</strong> - monitorowanie ruchu w serwisie pomaga nam wykrywac i zapobiegac potencjalnym zagrozeniom bezpieczenstwa</li>
+                    <li><strong>Spersonalizowanie tresci</strong> - zapamietywanie Twoich preferencji (np. wybranego jezyka) w celu zapewnienia lepszego doswiadczenia przy kolejnych wizytach</li>
+                </ul>
+                <p>Nie sprzedajemy, nie wynajmujemy ani nie udostepniamy Twoich danych osobowych podmiotom trzecim w celach marketingowych.</p>
+
+                <!-- Pliki Cookie -->
+                <h2>4. Pliki Cookie</h2>
+                <p>Nasza strona wykorzystuje pliki cookie - niewielkie pliki tekstowe przechowywane na Twoim urzadzeniu. Ponizej opisujemy rodzaje plikow cookie, z ktorych korzystamy:</p>
+
+                <h3>Cookie analityczne</h3>
+                <p>Korzystamy z narzedzi analitycznych (w tym Google Analytics) w celu zbierania zanonimizowanych danych statystycznych dotyczacych ruchu na stronie. Te pliki cookie pomagaja nam zrozumiec, ktore tresci sa najbardziej popularne i jak mozemy ulepszyc nasz serwis. Dane te sa agregowane i nie pozwalaja na identyfikacje poszczegolnych uzytkownikow.</p>
+
+                <h3>Cookie preferencji</h3>
+                <p>Te pliki cookie zapamietuja Twoje ustawienia i preferencje, takie jak wybrany jezyk interfejsu (polski lub angielski), aby zapewnic Ci lepsze doswiadczenie przy kolejnych wizytach na naszej stronie. Dzieki nim nie musisz ustawiac swoich preferencji za kazdym razem od nowa.</p>
+
+                <h3>Cookie funkcjonalne</h3>
+                <p>Niezbedne do prawidlowego dzialania podstawowych funkcji serwisu. Te pliki cookie nie zbieraja danych osobowych i sa konieczne do zapewnienia poprawnego dzialania strony.</p>
+
+                <p>Mozesz zarzadzac plikami cookie w ustawieniach swojej przegladarki. Pamietaj jednak, ze wylaczenie niektorych plikow cookie moze ograniczyc funkcjonalnosc naszej strony.</p>
+
+                <!-- Linki Afiliacyjne -->
+                <h2>5. Linki Afiliacyjne</h2>
+                <p>SoftwareSlice uczestnicy w programach afiliacyjnych. Oznacza to, ze niektore linki w naszych recenzjach i artkulach sa linkami afiliacyjnymi - gdy klikniesz taki link i dokonasz zakupu, mozemy otrzymac prowizje od sprzedawcy.</p>
+                <p>Pragniemy podkreslic, ze:</p>
+                <ul>
+                    <li>Udzial w programach afiliacyjnych nie wplywa na obiektywnosc naszych recenzji - nasze oceny opieraja sie wylacznie na jakosci i funkcjonalnosci oprogramowania</li>
+                    <li>Korzystanie z linkow afiliacyjnych nie wiaze sie z zadnymi dodatkowymi kosztami dla uzytkownika</li>
+                    <li>Partnerzy afiliacyjni moga stosowac wlasne pliki cookie do sledzenia konwersji - dzialanie tych plikow cookie podlega polityce prywatnosci danego partnera</li>
+                    <li>Linki afiliacyjne sa wyraznie oznaczane w naszych tresciach</li>
+                </ul>
+                <p>Podmioty trzecie, z ktorymi wspolpracujemy w ramach programow afiliacyjnych, moga zbierac dane o Twoich kliknieciach w celu prawidlowego rozliczenia prowizji. Zachecamy do zapoznania sie z politykami prywatnosci tych podmiotow.</p>
+
+                <!-- Twoje Prawa -->
+                <h2>6. Twoje Prawa</h2>
+                <p>Zgodnie z Rozporzadzeniem o Ochronie Danych Osobowych (RODO/GDPR), przysuguja Ci nastepujace prawa w odniesieniu do Twoich danych osobowych:</p>
+                <ul>
+                    <li><strong>Prawo dostepu</strong> - masz prawo uzyskac informacje o tym, jakie Twoje dane osobowe przetwarzamy, oraz zarzadac kopii tych danych</li>
+                    <li><strong>Prawo do sprostowania</strong> - masz prawo zarzadac poprawienia nieprawidlowych lub niekompletnych danych osobowych</li>
+                    <li><strong>Prawo do usuniecia</strong> - masz prawo zarzadac usuniecia swoich danych osobowych z naszych systemow (tzw. "prawo do bycia zapomnianym")</li>
+                    <li><strong>Prawo do ograniczenia przetwarzania</strong> - masz prawo zarzadac ograniczenia przetwarzania Twoich danych w okreslonych okolicznosciach</li>
+                    <li><strong>Prawo do przenoszenia danych</strong> - masz prawo otrzymac swoje dane osobowe w ustrukturyzowanym, powszechnie uzywanym formacie</li>
+                    <li><strong>Prawo do sprzeciwu</strong> - masz prawo wniesc sprzeciw wobec przetwarzania Twoich danych osobowych</li>
+                    <li><strong>Prawo do wycofania zgody</strong> - jezeli przetwarzanie odbywa sie na podstawie zgody, masz prawo wycofac ja w dowolnym momencie</li>
+                </ul>
+                <p>Aby skorzystac z ktoregolwiek z powyzszych praw, skontaktuj sie z nami za posrednictwem adresu e-mail podanego w sekcji "Kontakt" ponizej. Odpowiemy na Twoje zapytanie w ciagu 30 dni roboczych.</p>
+                <p>Masz rowniez prawo do zlozenia skargi do organu nadzorczego ochrony danych osobowych (w Polsce: Urzad Ochrony Danych Osobowych - UODO), jezeli uważasz, ze przetwarzanie Twoich danych narusza przepisy RODO.</p>
+
+                <!-- Bezpieczenstwo Danych -->
+                <h2>7. Bezpieczenstwo Danych</h2>
+                <p>Bezpieczenstwo Twoich danych jest dla nas priorytetem. Stosujemy odpowiednie srodki techniczne i organizacyjne w celu ochrony Twoich danych osobowych przed nieautoryzowanym dostepem, utrata, zniszczeniem lub ujawnieniem. W szczegolnosci:</p>
+                <ul>
+                    <li>Nasza strona korzysta z protokolu SSL/TLS (HTTPS), ktory szyfruje dane przesylane miedzy Twoja przegladarka a naszym serwerem</li>
+                    <li>Dostep do danych osobowych jest ograniczony wylacznie do upowaznionych osob, ktore potrzebuja ich do wykonywania swoich obowiazkow</li>
+                    <li>Regularnie aktualizujemy nasze systemy i oprogramowanie w celu eliminacji potencjalnych luk bezpieczenstwa</li>
+                    <li>Dane przechowywane sa na zabezpieczonych serwerach z regularnymi kopiami zapasowymi</li>
+                    <li>Stosujemy zasade minimalizacji danych - zbieramy tylko te dane, ktore sa niezbedne do realizacji okreslonych celow</li>
+                </ul>
+                <p>Pomimo stosowania najlepszych dostepnych srodkow bezpieczenstwa, zadna metoda transmisji danych przez Internet nie jest w 100% bezpieczna. W przypadku naruszenia bezpieczenstwa danych, niezwlocznie poinformujemy o tym odpowiednie organy oraz uzytkownikow, ktorych dane mogly zostac naruszone.</p>
+
+                <!-- Zmiany w Polityce -->
+                <h2>8. Zmiany w Polityce Prywatnosci</h2>
+                <p>Zastrzegamy sobie prawo do wprowadzania zmian w niniejszej Polityce Prywatnosci. Wszelkie aktualizacje beda publikowane na tej stronie wraz z data ostatniej modyfikacji.</p>
+                <p>W przypadku istotnych zmian dotyczacych sposobu przetwarzania danych osobowych, dołozymy staran, aby poinformowac o nich uzytkownikow za posrednictwem widocznego komunikatu na stronie lub wiadomosci e-mail (w przypadku subskrybentow newslettera).</p>
+                <p>Zachecamy do regularnego sprawdzania tej strony w celu zapoznania sie z aktualna wersja Polityki Prywatnosci. Dalsze korzystanie z serwisu po wprowadzeniu zmian oznacza akceptacje zaktualizowanej polityki.</p>
+
+                <!-- Kontakt -->
+                <h2>9. Kontakt</h2>
+                <p>Jezeli masz jakiekolwiek pytania dotyczace niniejszej Polityki Prywatnosci, sposobu przetwarzania Twoich danych osobowych lub chcesz skorzystac z przyslugujacych Ci praw, skontaktuj sie z nami:</p>
+                <ul>
+                    <li><strong>E-mail:</strong> <a href="mailto:kontakt@softwareslice.com">kontakt@softwareslice.com</a></li>
+                    <li><strong>Formularz kontaktowy:</strong> <a href="contact.html">Strona kontaktowa</a></li>
+                </ul>
+                <p>Dolozymy wszelkich staran, aby odpowiedziec na Twoje zapytanie w mozliwie najkrotszym czasie, nie pozniej niz w ciagu 30 dni od jego otrzymania.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid fade-in">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">SS</div>
+                        <span>Software</span>Slice
+                    </a>
+                    <p data-i18n="footer.description">Twoje zrodlo rzetelnych recenzji oprogramowania. Pomagamy wybrac najlepsze narzedzia cyfrowe.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Twitter">&#120143;</a>
+                        <a href="#" aria-label="GitHub">&#9672;</a>
+                        <a href="#" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-i18n="footer.navigation">Nawigacja</h4>
+                    <a href="index.html" data-i18n="nav.home">Strona Glowna</a>
+                    <a href="categories.html" data-i18n="nav.categories">Kategorie</a>
+                    <a href="#" data-i18n="nav.reviews">Recenzje</a>
+                    <a href="about.html" data-i18n="nav.about">O Nas</a>
+                    <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-i18n="footer.categories">Kategorie</h4>
+                    <a href="#">Produktywnosc</a>
+                    <a href="#">Bezpieczenstwo</a>
+                    <a href="#">Narzedzia Deweloperskie</a>
+                    <a href="#">Grafika i Design</a>
+                    <a href="#">Chmura i Hosting</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-i18n="footer.legal">Prawne</h4>
+                    <a href="privacy-policy.html" data-i18n="footer.privacy">Polityka Prywatnosci</a>
+                    <a href="#" data-i18n="footer.terms">Regulamin</a>
+                    <a href="#" data-i18n="footer.cookies">Polityka Cookie</a>
+                    <a href="#" data-i18n="footer.affiliate">Ujawnienie Afiliacji</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoftwareSlice. <span data-i18n="footer.rights">Wszelkie prawa zastrzezone.</span></p>
+                <p data-i18n="footer.madeWith">Stworzone z pasja do oprogramowania.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

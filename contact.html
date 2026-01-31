@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - SoftwareSlice</title>
+    <meta name="description" content="Skontaktuj się z zespołem SoftwareSlice. Masz pytanie, propozycję współpracy lub prośbę o recenzję? Napisz do nas!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .lang-switcher { display: flex; gap: 4px; margin-left: 12px; }
+        .lang-btn { padding: 6px 12px; background: #1A1A1A; border: 1px solid #2A2A2A; border-radius: 6px; color: #888; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .lang-btn:hover, .lang-btn.active { border-color: #FFD700; color: #FFD700; background: rgba(255,215,0,0.15); }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- ============ NAVBAR ============ -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">SS</div>
+                <span>Software<strong>Slice</strong></span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-i18n="nav.home">Strona Główna</a>
+                <a href="categories.html" class="nav-link" data-i18n="nav.categories">Kategorie</a>
+                <a href="#" class="nav-link" data-i18n="nav.reviews">Recenzje</a>
+                <a href="about.html" class="nav-link" data-i18n="nav.about">O Nas</a>
+                <a href="contact.html" class="nav-link active" data-i18n="nav.contact">Kontakt</a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-bar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" placeholder="Szukaj oprogramowania..." data-i18n-placeholder="nav.search">
+                </div>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="pl">PL</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+
+            <button class="mobile-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <section class="page-header fade-in">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" data-i18n="nav.home">Strona Główna</a>
+                <span class="breadcrumb-separator">&gt;</span>
+                <span data-i18n="nav.contact">Kontakt</span>
+            </div>
+            <h1 class="page-title" data-i18n="contact.title">Skontaktuj się z Nami</h1>
+            <p class="page-description" data-i18n="contact.desc">Masz pytanie, sugestię lub chcesz nawiązać współpracę? Wypełnij poniższy formularz lub skontaktuj się z nami bezpośrednio — odpowiadamy w ciągu 24 godzin.</p>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT GRID ============ -->
+    <section class="contact-section fade-in">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- Left Column: Contact Form -->
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="fullName" data-i18n="contact.name">Imię i Nazwisko</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Jan Kowalski" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" data-i18n="contact.email">Adres Email</label>
+                            <input type="email" id="email" name="email" placeholder="jan@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" data-i18n="contact.subject">Temat</label>
+                            <select id="subject" name="subject" required>
+                                <option value="ogolne" data-i18n="contact.subject.general">Ogólne Pytanie</option>
+                                <option value="recenzja" data-i18n="contact.subject.review">Prośba o Recenzję</option>
+                                <option value="biznes" data-i18n="contact.subject.business">Współpraca Biznesowa</option>
+                                <option value="inne" data-i18n="contact.subject.other">Inne</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" data-i18n="contact.message">Wiadomość</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Napisz swoją wiadomość..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-submit" data-i18n="contact.send">Wyślij Wiadomość</button>
+                    </form>
+                </div>
+
+                <!-- Right Column: Contact Info Cards -->
+                <div class="contact-info-cards">
+
+                    <div class="contact-card fade-in">
+                        <div class="contact-card-icon">✉️</div>
+                        <h3 data-i18n="contact.general">Ogólne Pytania</h3>
+                        <p data-i18n="contact.general.desc">Masz pytanie dotyczące naszych recenzji, ocen lub strony? Napisz do nas, a chętnie pomożemy.</p>
+                        <a href="mailto:kontakt@softwareslice.com" class="contact-card-email">kontakt@softwareslice.com</a>
+                    </div>
+
+                    <div class="contact-card fade-in">
+                        <div class="contact-card-icon">🤝</div>
+                        <h3 data-i18n="contact.business">Współpraca Biznesowa</h3>
+                        <p data-i18n="contact.business.desc">Zainteresowany współpracą, reklamą lub partnerstwem? Skontaktuj się z naszym zespołem biznesowym.</p>
+                        <a href="mailto:biznes@softwareslice.com" class="contact-card-email">biznes@softwareslice.com</a>
+                    </div>
+
+                    <div class="contact-card fade-in">
+                        <div class="contact-card-icon">🔍</div>
+                        <h3 data-i18n="contact.review">Prośba o Recenzję</h3>
+                        <p data-i18n="contact.review.desc">Chcesz, żebyśmy zrecenzowali konkretne oprogramowanie? Prześlij nam swoją propozycję.</p>
+                        <a href="mailto:recenzje@softwareslice.com" class="contact-card-email">recenzje@softwareslice.com</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ NEWSLETTER CTA ============ -->
+    <section class="cta-section fade-in">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h2 data-i18n="cta.title">Bądź na bieżąco z najnowszymi recenzjami</h2>
+                    <p data-i18n="cta.desc">Dołącz do naszego newslettera i otrzymuj powiadomienia o najnowszych recenzjach, poradnikach i rankingach oprogramowania.</p>
+                    <div class="cta-form">
+                        <input type="email" placeholder="Twój adres email..." data-i18n-placeholder="cta.placeholder">
+                        <button class="btn btn-primary" data-i18n="cta.button">Subskrybuj</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <div class="footer-col">
+                    <a href="index.html" class="logo footer-logo">
+                        <div class="logo-icon">SS</div>
+                        <span>Software<strong>Slice</strong></span>
+                    </a>
+                    <p class="footer-desc" data-i18n="footer.desc">Twoje zaufane źródło rzetelnych i szczegółowych recenzji oprogramowania. Pomagamy wybrać najlepsze narzędzia.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-i18n="footer.navigation">Nawigacja</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" data-i18n="nav.home">Strona Główna</a></li>
+                        <li><a href="categories.html" data-i18n="nav.categories">Kategorie</a></li>
+                        <li><a href="#" data-i18n="nav.reviews">Recenzje</a></li>
+                        <li><a href="about.html" data-i18n="nav.about">O Nas</a></li>
+                        <li><a href="contact.html" data-i18n="nav.contact">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-i18n="footer.categories">Kategorie</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-i18n="footer.cat.productivity">Produktywność</a></li>
+                        <li><a href="#" data-i18n="footer.cat.security">Bezpieczeństwo</a></li>
+                        <li><a href="#" data-i18n="footer.cat.development">Programowanie</a></li>
+                        <li><a href="#" data-i18n="footer.cat.design">Projektowanie</a></li>
+                        <li><a href="#" data-i18n="footer.cat.business">Biznes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 data-i18n="footer.legal">Informacje</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-i18n="footer.privacy">Polityka Prywatności</a></li>
+                        <li><a href="#" data-i18n="footer.terms">Regulamin</a></li>
+                        <li><a href="#" data-i18n="footer.cookies">Polityka Cookies</a></li>
+                        <li><a href="#" data-i18n="footer.sitemap">Mapa Strony</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p data-i18n="footer.copy">&copy; 2026 SoftwareSlice. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
