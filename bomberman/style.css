@@ -93,7 +93,7 @@ html, body {
 .game-frame {
     position: relative;
     width: 100%;
-    max-width: 808px;
+    max-width: 912px;
     margin: 0 auto;
     padding: 14px;
     background: linear-gradient(160deg, rgba(255,91,58,0.10), rgba(109,211,255,0.10));
@@ -109,7 +109,7 @@ html, body {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 780 / 676;
+    aspect-ratio: 884 / 676;
     border-radius: 12px;
     background: #0a0f25;
     image-rendering: pixelated;

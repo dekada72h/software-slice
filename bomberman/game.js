@@ -6,7 +6,7 @@
 
   // -------- Configuration --------
   const TILE = 52;
-  const COLS = 15;
+  const COLS = 17;
   const ROWS = 13;
   const W = COLS * TILE;
   const H = ROWS * TILE;
@@ -960,13 +960,24 @@
     }
     if (!explosionAt(cx, cy)) en._lastExplosionTile = null;
 
-    // Re-pick direction at intersections / when blocked
+    // Re-pick direction at intersections / when blocked.
+    // Probe a full body-radius ahead so we detect the wall *before* clipping it,
+    // and also retarget when stuck mid-tile (otherwise an enemy that walks
+    // face-first into a wall freezes forever, because the original logic only
+    // retargeted near a cell center).
     const centerDist = Math.hypot(en.x - (cx * TILE + TILE / 2), en.y - (cy * TILE + TILE / 2));
-    const aheadBlocked = isBlockedForEntity(en.x + en.dir.x * 5, en.y + en.dir.y * 5, en, { ghost: en.canPhase });
+    const probe = en.r + 2;
+    const aheadBlocked = isBlockedForEntity(en.x + en.dir.x * probe, en.y + en.dir.y * probe, en, { ghost: en.canPhase });
 
-    if (centerDist < 4) {
+    if (centerDist < 4 || aheadBlocked) {
       const danger = isOnBombFusePath(cx, cy);
       if (danger || en.retargetIn <= 0 || aheadBlocked) {
+        // If we were stuck against a wall, snap back to the cell center first
+        // so the new direction has clean grid alignment.
+        if (aheadBlocked && centerDist > 4) {
+          en.x = cx * TILE + TILE / 2;
+          en.y = cy * TILE + TILE / 2;
+        }
         en.dir = chooseEnemyDir(en, cx, cy, danger);
         // Liners commit longer to the direction they pick to feel like they "walk straight".
         en.retargetIn = en.type === 'liner' ? rand(2.0, 3.5) : rand(0.5, 1.4);
