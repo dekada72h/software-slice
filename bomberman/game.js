@@ -664,8 +664,10 @@
       }
       const b = bombAt(cx, cy);
       if (b) {
-        // Allow standing on the bomb you just placed (until you leave it).
-        if (opts.bombPassThroughId && b._id === opts.bombPassThroughId) continue;
+        // Let the entity pass through any bomb its body currently overlaps,
+        // so the player can walk off of a freshly-placed bomb without getting
+        // stuck the moment their center crosses the tile boundary.
+        if (opts.bombPassThroughIds && opts.bombPassThroughIds.has(b._id)) continue;
         return true;
       }
     }
@@ -1192,14 +1194,29 @@
         p.moveAnim += dt * 9;
       }
 
-      // determine which bomb (if any) the player is currently overlapping so they can step off it
+      // Find every bomb the player's body currently overlaps so they can step
+      // off of any of them. Without this, the player gets stuck the moment
+      // their center crosses out of a freshly-placed bomb's tile but the rest
+      // of their body is still on top of it.
       const cx = Math.floor(p.x / TILE);
       const cy = Math.floor(p.y / TILE);
-      const standingBomb = bombAt(cx, cy);
+      const passThroughIds = new Set();
+      const rr = p.r * 0.92;
+      const probe = [
+        [p.x - rr, p.y - rr],
+        [p.x + rr, p.y - rr],
+        [p.x - rr, p.y + rr],
+        [p.x + rr, p.y + rr],
+        [p.x, p.y],
+      ];
+      for (const [px, py] of probe) {
+        const b = bombAt(Math.floor(px / TILE), Math.floor(py / TILE));
+        if (b) passThroughIds.add(b._id);
+      }
 
       tryMove(p, dx, dy, dt, {
         ghost: p.ghost > 0,
-        bombPassThroughId: standingBomb ? standingBomb._id : null,
+        bombPassThroughIds: passThroughIds,
       });
 
       // Kick: try to push a bomb in front of the player when walking into it
