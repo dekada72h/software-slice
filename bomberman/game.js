@@ -6,10 +6,21 @@
 
   // -------- Configuration --------
   const TILE = 52;
-  const COLS = 17;
-  const ROWS = 13;
-  const W = COLS * TILE;
-  const H = ROWS * TILE;
+  // Visible viewport (canvas size, in tiles).
+  const VIEW_COLS = 17;
+  const VIEW_ROWS = 13;
+  const W = VIEW_COLS * TILE;
+  const H = VIEW_ROWS * TILE;
+  // Full level map. The camera scrolls across this with the player.
+  // Bonus stages override these to a single-screen size in nextLevel().
+  const FULL_MAP_COLS = 50;
+  const FULL_MAP_ROWS = 200;
+  // The current map dimensions (variable: bonus stages shrink it).
+  let COLS = FULL_MAP_COLS;
+  let ROWS = FULL_MAP_ROWS;
+  // Convenience accessors (in pixels)
+  const mapW = () => COLS * TILE;
+  const mapH = () => ROWS * TILE;
 
   const TILE_EMPTY      = 0;
   const TILE_HARD       = 1;
@@ -92,8 +103,9 @@
   function pickEnemiesForStage(stageNum) {
     // Strict rule: every regular stage has at least one MORE monster than the previous one
     // until we hit the map cap. Composition shifts toward harder types as stages climb.
-    const cap = 20;
-    const total = Math.min(cap, 2 + stageNum); // stage 1 -> 3, stage 18 -> 20, then capped
+    // The big 50x200 map has plenty of room, so we scale total enemies way up.
+    const cap = 80;
+    const total = Math.min(cap, 14 + stageNum * 2); // stage 1 -> 16, stage 30 -> 74, then capped
     // Type "tiers" become available with each stage band
     let walker = 0, liner = 0, runner = 0, chaser = 0, phaser = 0, smart = 0;
     let remaining = total;
@@ -268,6 +280,8 @@
     bossActive:   false,
     bonusKills:   0,
     bonusTimeLeft: 0,
+    cameraX:      0,
+    cameraY:      0,
     // run stats
     runKills:     0,        // total monsters killed this game
     runStage:     0,        // highest stage reached this game
@@ -417,16 +431,16 @@
       powerups.push({ x: softs[i].x, y: softs[i].y, type: rollPowerup(), anim: Math.random() * Math.PI * 2, hidden: true });
     }
 
-    // Hide an exit door under a brick that is NOT a powerup. Bombing the door
-    // (instead of letting the player walk onto it after revealing it) penalises
-    // them with a wave of extra monsters, just like the original Bomberman.
+    // Hide an exit door under a random brick — anywhere on the map, even
+    // close to spawn. You still have to clear every monster before stepping
+    // onto it (the door won't accept you while anything's still alive).
+    // Bombing the door (instead of stepping on it) spawns a penalty wave.
     let door = null;
     const occupied = new Set(powerups.map(p => `${p.x},${p.y}`));
-    for (let i = numHidden; i < softs.length; i++) {
-      if (!occupied.has(`${softs[i].x},${softs[i].y}`)) {
-        door = { x: softs[i].x, y: softs[i].y, anim: 0, revealed: false };
-        break;
-      }
+    const candidates = softs.filter(s => !occupied.has(`${s.x},${s.y}`));
+    if (candidates.length) {
+      const choice = candidates[Math.floor(Math.random() * candidates.length)];
+      door = { x: choice.x, y: choice.y, anim: 0, revealed: false };
     }
 
     return { grid, powerups, door };
@@ -1359,22 +1373,50 @@
 
   // -------- Rendering --------
   function render() {
-    // shake offset
+    // shake offset (screen space)
     let ox = 0, oy = 0;
     if (game.shake > 0) {
       ox = (Math.random() - 0.5) * game.shake * 14;
       oy = (Math.random() - 0.5) * game.shake * 14;
     }
 
+    // Smooth camera follow, clamped to map bounds.
+    const targetX = clamp((game.player ? game.player.x : W/2) - W / 2, 0, Math.max(0, mapW() - W));
+    const targetY = clamp((game.player ? game.player.y : H/2) - H / 2, 0, Math.max(0, mapH() - H));
+    if (!game._cameraInitialized) {
+      game.cameraX = targetX;
+      game.cameraY = targetY;
+      game._cameraInitialized = true;
+    } else {
+      game.cameraX += (targetX - game.cameraX) * 0.18;
+      game.cameraY += (targetY - game.cameraY) * 0.18;
+    }
+    const camX = Math.round(game.cameraX);
+    const camY = Math.round(game.cameraY);
+
     ctx.save();
     ctx.translate(ox, oy);
 
-    // background floor
+    // Floor (screen-space solid + cheap parallax dots)
     drawFloor();
 
-    // grid: walls + soft walls
-    for (let y = 0; y < ROWS; y++) {
-      for (let x = 0; x < COLS; x++) {
+    // Apply camera transform for everything that lives in world space
+    ctx.save();
+    ctx.translate(-camX, -camY);
+
+    // Compute visible tile range so we don't loop the entire 50x200 map.
+    const startX = Math.max(0, Math.floor(camX / TILE));
+    const endX   = Math.min(COLS, Math.ceil((camX + W) / TILE) + 1);
+    const startY = Math.max(0, Math.floor(camY / TILE));
+    const endY   = Math.min(ROWS, Math.ceil((camY + H) / TILE) + 1);
+
+    for (let y = startY; y < endY; y++) {
+      for (let x = startX; x < endX; x++) {
+        // subtle checker tint
+        if ((x + y) % 2 === 0) {
+          ctx.fillStyle = 'rgba(255,255,255,0.018)';
+          ctx.fillRect(x * TILE, y * TILE, TILE, TILE);
+        }
         const t = game.grid[y][x];
         if (t === TILE_HARD) drawHardWall(x, y);
         else if (t === TILE_REINFORCED) drawReinforcedWall(x, y);
@@ -1385,8 +1427,13 @@
     // exit door (revealed)
     if (game.door && game.door.revealed) drawDoor(game.door);
 
-    // powerups (revealed)
-    for (const pu of game.powerups) if (!pu.hidden) drawPowerup(pu);
+    // powerups (revealed) - visibility cull
+    for (const pu of game.powerups) {
+      if (pu.hidden) continue;
+      if (pu.x < startX - 1 || pu.x > endX + 1) continue;
+      if (pu.y < startY - 1 || pu.y > endY + 1) continue;
+      drawPowerup(pu);
+    }
 
     // bombs
     for (const b of game.bombs) drawBomb(b);
@@ -1394,8 +1441,14 @@
     // explosions
     for (const e of game.explosions) drawExplosion(e);
 
-    // enemies
-    for (const en of game.enemies) drawEnemy(en);
+    // enemies (visibility cull)
+    for (const en of game.enemies) {
+      const ex = Math.floor(en.x / TILE);
+      const ey = Math.floor(en.y / TILE);
+      if (ex < startX - 1 || ex > endX + 1) continue;
+      if (ey < startY - 1 || ey > endY + 1) continue;
+      drawEnemy(en);
+    }
 
     // player
     if (game.player) drawPlayer(game.player);
@@ -1420,6 +1473,15 @@
     }
     ctx.globalAlpha = 1;
 
+    // End world-space transform
+    ctx.restore();
+
+    // Door beacon (screen-space arrow pointing toward the exit)
+    if (game.door && game.door.revealed) drawDoorBeacon(game.door, camX, camY);
+
+    // Mini-map (screen-space)
+    drawMinimap(camX, camY);
+
     // vignette
     const grd = ctx.createRadialGradient(W/2, H/2, H * 0.4, W/2, H/2, H * 0.85);
     grd.addColorStop(0, 'rgba(0,0,0,0)');
@@ -1431,22 +1493,100 @@
   }
 
   function drawFloor() {
+    // Screen-space solid gradient. The per-tile checker tint is drawn inside
+    // the visible-tile loop so we only paint what's actually on screen.
     const theme = game.theme || DEFAULT_THEME;
     const g = ctx.createLinearGradient(0, 0, 0, H);
     g.addColorStop(0, theme.floorTop);
     g.addColorStop(1, theme.floorBot);
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
+  }
 
-    // checker
-    for (let y = 0; y < ROWS; y++) {
-      for (let x = 0; x < COLS; x++) {
-        if ((x + y) % 2 === 0) {
-          ctx.fillStyle = 'rgba(255,255,255,0.018)';
-          ctx.fillRect(x * TILE, y * TILE, TILE, TILE);
-        }
+  function drawDoorBeacon(door, camX, camY) {
+    // If the door is on screen, no beacon needed.
+    const dx_world = door.x * TILE + TILE / 2;
+    const dy_world = door.y * TILE + TILE / 2;
+    if (dx_world >= camX && dx_world <= camX + W && dy_world >= camY && dy_world <= camY + H) return;
+    // Draw a small arrow on the screen edge pointing toward the door.
+    const playerCx = (game.player ? game.player.x : camX + W/2) - camX;
+    const playerCy = (game.player ? game.player.y : camY + H/2) - camY;
+    const targetX = dx_world - camX;
+    const targetY = dy_world - camY;
+    const dx = targetX - playerCx;
+    const dy = targetY - playerCy;
+    const ang = Math.atan2(dy, dx);
+    // clamp to a margin inside the canvas
+    const m = 36;
+    const px = clamp(playerCx + Math.cos(ang) * 9999, m, W - m);
+    const py = clamp(playerCy + Math.sin(ang) * 9999, m, H - m);
+    ctx.save();
+    ctx.translate(px, py);
+    ctx.rotate(ang);
+    ctx.shadowColor = '#6dd3ff';
+    ctx.shadowBlur = 14;
+    ctx.fillStyle = '#6dd3ff';
+    ctx.beginPath();
+    ctx.moveTo(16, 0);
+    ctx.lineTo(-10, 9);
+    ctx.lineTo(-4, 0);
+    ctx.lineTo(-10, -9);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+    ctx.shadowBlur = 0;
+    // small "EXIT" label
+    ctx.fillStyle = 'rgba(109, 211, 255, 0.95)';
+    ctx.font = 'bold 10px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('EXIT', px, py + 22);
+  }
+
+  function drawMinimap(camX, camY) {
+    if (!game.player) return;
+    if (game.stageKind === 'bonus') return;   // tiny map; skip
+    // Small map in the top-right corner. Tiles are 1px each so 50x200 fits 50x200 px.
+    const padding = 8;
+    const mapPxW = COLS;     // 1 px per tile
+    const mapPxH = Math.min(ROWS, 110);  // cap so it doesn't dominate the screen
+    const mx = W - mapPxW - padding;
+    const my = padding;
+    // background
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
+    ctx.fillRect(mx - 2, my - 2, mapPxW + 4, mapPxH + 4);
+    // tiles (sample down if rows > mapPxH)
+    const yStep = ROWS / mapPxH;
+    for (let py = 0; py < mapPxH; py++) {
+      const row = Math.floor(py * yStep);
+      for (let px = 0; px < mapPxW; px++) {
+        const t = game.grid[row][px];
+        if (t === TILE_HARD)        ctx.fillStyle = 'rgba(180, 195, 230, 0.5)';
+        else if (t === TILE_SOFT)   ctx.fillStyle = 'rgba(200, 130, 80, 0.4)';
+        else if (t === TILE_REINFORCED) ctx.fillStyle = 'rgba(120, 90, 70, 0.55)';
+        else continue;
+        ctx.fillRect(mx + px, my + py, 1, 1);
       }
     }
+    // player dot
+    const px_dot = mx + Math.floor(game.player.x / TILE);
+    const py_dot = my + Math.floor((game.player.y / TILE) / yStep);
+    ctx.fillStyle = '#9be0ff';
+    ctx.fillRect(px_dot - 1, py_dot - 1, 3, 3);
+    // door dot (only if revealed)
+    if (game.door && game.door.revealed) {
+      const dx_dot = mx + game.door.x;
+      const dy_dot = my + Math.floor(game.door.y / yStep);
+      ctx.fillStyle = '#6dd3ff';
+      ctx.fillRect(dx_dot - 1, dy_dot - 1, 3, 3);
+    }
+    // viewport rectangle
+    ctx.strokeStyle = 'rgba(255, 206, 58, 0.6)';
+    ctx.lineWidth = 1;
+    const vx = mx + Math.floor(camX / TILE);
+    const vy = my + Math.floor((camY / TILE) / yStep);
+    const vw = Math.ceil(W / TILE);
+    const vh = Math.max(2, Math.ceil((H / TILE) / yStep));
+    ctx.strokeRect(vx, vy, vw, vh);
   }
 
   function drawHardWall(cx, cy) {
@@ -1849,6 +1989,16 @@
     game.stageKind = cfg.kind;
     game.theme = THEMES[cfg.theme] || DEFAULT_THEME;
 
+    // Bonus rounds use a single-screen map so the 30-second timer is fair.
+    // Regular and boss stages use the full 50x200 scrolling map.
+    if (cfg.kind === 'bonus') {
+      COLS = VIEW_COLS;
+      ROWS = VIEW_ROWS;
+    } else {
+      COLS = FULL_MAP_COLS;
+      ROWS = FULL_MAP_ROWS;
+    }
+
     let built;
     if (cfg.kind === 'bonus') {
       built = buildBonusLevel(game.level - 1);
@@ -1860,6 +2010,9 @@
     game.powerups = built.powerups;
     game.door = built.door || null;
     game.bombs = [];
+    game._cameraInitialized = false;
+    game.cameraX = 0;
+    game.cameraY = 0;
     game.explosions = [];
     game.particles = [];
     game.floats = [];
@@ -1872,9 +2025,10 @@
     game.bossActive = (cfg.kind === 'boss');
     game.levelStartedAt = game.elapsed;
 
-    // Bonus rounds get a 30s clock and free movement; regular get 180+
-    game.timeLeft = (cfg.kind === 'bonus') ? 30 : (160 + 20 * (game.level - 1));
-    if (cfg.kind === 'boss') game.timeLeft += 60;
+    // Bonus rounds get a 30s sprint; regular/boss get a generous clock since
+    // the playfield is now 50x200 and you need time to traverse it.
+    game.timeLeft = (cfg.kind === 'bonus') ? 30 : (480 + 20 * (game.level - 1));
+    if (cfg.kind === 'boss') game.timeLeft += 120;
 
     // Player keeps powerups, but reset position + bomb count
     const old = game.player || makePlayer();
@@ -2036,7 +2190,11 @@
     requestAnimationFrame(frame);
   }
 
-  // Bootstrap empty grid so render() works on title screen
+  // Bootstrap a tiny empty grid so render() works on the title screen.
+  // We use viewport-sized dims here so the title screen looks fine before any
+  // level kicks in; nextLevel() will resize the grid for real gameplay.
+  COLS = VIEW_COLS;
+  ROWS = VIEW_ROWS;
   game.grid = Array.from({ length: ROWS }, () => Array(COLS).fill(TILE_EMPTY));
   for (let y = 0; y < ROWS; y++) for (let x = 0; x < COLS; x++) {
     if (x === 0 || y === 0 || x === COLS - 1 || y === ROWS - 1) game.grid[y][x] = TILE_HARD;
