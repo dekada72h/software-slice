@@ -425,10 +425,11 @@
         if (grid[y][x] === TILE_SOFT) softs.push({ x, y });
     softs.sort(() => Math.random() - 0.5);
 
-    const numHidden = Math.min(softs.length, 8 + levelIdx);
+    // Exactly one random powerup per level, hidden under a random brick.
     const powerups = [];
-    for (let i = 0; i < numHidden; i++) {
-      powerups.push({ x: softs[i].x, y: softs[i].y, type: rollPowerup(), anim: Math.random() * Math.PI * 2, hidden: true });
+    if (softs.length > 0) {
+      const pick = softs[0];
+      powerups.push({ x: pick.x, y: pick.y, type: rollPowerup(), anim: Math.random() * Math.PI * 2, hidden: true });
     }
 
     // Hide an exit door under a random brick — anywhere on the map, even
@@ -460,7 +461,7 @@
       bombPower: 1,
       // powerups
       shield: false,
-      ghost: 0,               // seconds remaining
+      ghost: false,           // wall-pass: stays until you die
       kick: false,
       remote: false,
       mega: false,
@@ -902,7 +903,7 @@
       case 'bomb':   p.maxBombs  = Math.min(8, p.maxBombs + 1); break;
       case 'speed':  p.speed     = Math.min(220, p.speed + 18); break;
       case 'shield': p.shield = true; Audio.shield(); break;
-      case 'ghost':  p.ghost = 5.0; Audio.ghost(); break;
+      case 'ghost':  p.ghost = true; Audio.ghost(); break;
       case 'kick':   p.kick = true; break;
       case 'remote': p.remote = true; break;
       case 'time':   game.timeWarp = 6.0; break;
@@ -921,7 +922,7 @@
     if (p.maxBombs > 1)  tags.push('Bx' + p.maxBombs);
     if (p.speed > 130)   tags.push('S+');
     if (p.shield)        tags.push('SHIELD');
-    if (p.ghost > 0)     tags.push('GHOST ' + p.ghost.toFixed(1));
+    if (p.ghost)         tags.push('WALL-PASS');
     if (p.kick)          tags.push('KICK');
     if (p.remote)        tags.push('REMOTE');
     if (p.mega)          tags.push('MEGA');
@@ -1169,8 +1170,8 @@
       alive: true,
       iframes: 2.5,
       bombsActive: 0,
-      // keep upgrades but lose ghost timer
-      ghost: 0,
+      // Wall-pass is a per-life ability — clear it on death.
+      ghost: false,
     };
     ui.lives.textContent = game.player.lives;
     refreshPowerHUD();
@@ -1201,10 +1202,6 @@
     const p = game.player;
     if (p.alive) {
       if (p.iframes > 0) p.iframes = Math.max(0, p.iframes - dt);
-      if (p.ghost > 0) {
-        p.ghost = Math.max(0, p.ghost - dt);
-        refreshPowerHUD();
-      }
 
       // Movement
       let dx = 0, dy = 0;
@@ -1240,7 +1237,7 @@
       }
 
       tryMove(p, dx, dy, dt, {
-        ghost: p.ghost > 0,
+        ghost: p.ghost,
         bombPassThroughIds: passThroughIds,
       });
 
@@ -1825,7 +1822,7 @@
     ctx.fill();
 
     // ghost effect
-    if (p.ghost > 0) ctx.globalAlpha *= 0.7;
+    if (p.ghost) ctx.globalAlpha *= 0.7;
 
     // body
     const bob = Math.sin(p.moveAnim) * 1.5;
@@ -1867,7 +1864,7 @@
       ctx.arc(p.x, cy, p.r + 4 + Math.sin(game.elapsed * 6) * 1.5, 0, Math.PI * 2);
       ctx.stroke();
     }
-    if (p.ghost > 0) {
+    if (p.ghost) {
       ctx.strokeStyle = 'rgba(185,147,255,0.7)';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
@@ -2030,7 +2027,8 @@
     game.timeLeft = (cfg.kind === 'bonus') ? 30 : (480 + 20 * (game.level - 1));
     if (cfg.kind === 'boss') game.timeLeft += 120;
 
-    // Player keeps powerups, but reset position + bomb count
+    // Player keeps powerups (including wall-pass) across stages.
+    // Wall-pass only resets when the player actually dies.
     const old = game.player || makePlayer();
     const c = cellCenter(1, 1);
     game.player = {
@@ -2041,7 +2039,6 @@
       alive: true,
       iframes: 2.0,
       bombsActive: 0,
-      ghost: 0,
     };
 
     if (cfg.kind === 'bonus') {
